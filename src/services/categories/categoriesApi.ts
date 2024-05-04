@@ -1,20 +1,20 @@
 import { ICategory } from 'src/models/models'
 import {api} from 'src/services/api'
-import {TAG_TYPES, CATEGORIES_URL} from 'src/data/constants'
+import {TAG_TYPES, CATEGORIES_URL, Methods} from 'src/data/constants'
 
 export const categoriesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
 		getCategories: builder.query<ICategory[], null>({
 			query: () => ({
 				url: CATEGORIES_URL,
-				method: 'GET'
+				method: Methods.Get
 			}),
 			providesTags: [TAG_TYPES.CATEGORIES]
 		}),
 		addCategory: builder.mutation({
 			query: (category) => ({
 				url: CATEGORIES_URL,
-				method: 'POST',
+				method: Methods.Post,
 				body: category
 			}),
 			invalidatesTags: [TAG_TYPES.CATEGORIES]
@@ -22,7 +22,7 @@ export const categoriesApi = api.injectEndpoints({
 		removeCategory: builder.mutation({
 			query: (id) => ({
 				url: `${CATEGORIES_URL}/${id}`,
-				method: 'DELETE'
+				method: Methods.Delete
 			}),
 			invalidatesTags: [TAG_TYPES.CATEGORIES]
 		})

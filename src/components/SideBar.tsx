@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import Cookies from "js-cookie"
 import { userLogout } from 'src/store/reducers/UserSlice'
+import { PathRoutes } from 'src/data/constants';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -32,30 +33,19 @@ function getItem(
   } as MenuItem;
 }
 
-enum MenuItems {
-  Dashboard = '',
-  Categories = 'categories',
-  AddCategory = 'add_category',
-  Spendings = 'spendings',
-  AddSpending = 'add_spending',
-  SpendingsReport = 'spendings_report',
-  Profile = 'profile',
-  Logout = 'logout'
-}
-
 const items: MenuProps['items'] = [
-  getItem('Dashboard', MenuItems.Dashboard, <MdOutlineSpaceDashboard />),
+  getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
   getItem('Categories', 'sub1', <BiCategoryAlt />, [
-    getItem('View categories', MenuItems.Categories),
-    getItem('Add category', MenuItems.AddCategory),
+    getItem('View categories', PathRoutes.Categories),
+    getItem('Add category', PathRoutes.AddCategory),
   ]),
   getItem('Spendings', 'sub2', <RiShoppingBasketLine />, [
-    getItem('View spendings', MenuItems.Spendings),
-    getItem('Add spending', MenuItems.AddSpending),
-    getItem('Reports', MenuItems.SpendingsReport),
+    getItem('View spendings', PathRoutes.Spendings),
+    getItem('Add spending', PathRoutes.AddSpending),
+    getItem('Reports', PathRoutes.SpendingsReport),
   ]),
-  getItem('Profile', MenuItems.Profile, <AiOutlineUser />),
-  getItem('Logout', MenuItems.Logout, <MdLogout />),
+  getItem('Profile', PathRoutes.Profile, <AiOutlineUser />),
+  getItem('Logout', PathRoutes.Logout, <MdLogout />),
 ];
 
 const menuBarStyle = css`
@@ -90,10 +80,10 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
 
   const handleOnClick: MenuProps['onClick'] = (e) => {
     const key = e.key
-    if (key === MenuItems.Logout) {
+    if (key === PathRoutes.Logout) {
       showModal()
     } else {
-      navigate(`/${key}`)
+      navigate(`${key}`)
     }
   };
 

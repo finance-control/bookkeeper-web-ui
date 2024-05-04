@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from "@emotion/react"
-import IconRemove from 'assets/icons/icon_remove_dark.svg'
+import IconRemove from 'src/assets/icons/icon_remove_dark.svg'
 import { useRemoveCategoryMutation } from 'src/services/categories/categoriesApi'
 import { Card, Typography } from 'antd'
 

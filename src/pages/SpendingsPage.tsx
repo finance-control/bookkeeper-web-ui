@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { css } from '@emotion/react';
-import { Table, DatePicker, Button } from 'antd';
+import { Table, DatePicker } from 'antd';
 import PageWrapper from 'src/components/PageWrapper'
 import PageHeader from 'src/components/PageHeader';
 import { useLazyGetSpendingsQuery } from 'src/services/spendings/spendingsApi';
-import { Space, Tag } from 'antd';
+import { Tag } from 'antd';
 import type { TableProps } from 'antd';
-import Chart from 'chart.js/auto';
-import { Bar, Doughnut, Line } from 'react-chartjs-2'
 import { ITableSpendings } from 'src/models/models'
 
 const { RangePicker } = DatePicker;
@@ -66,8 +64,7 @@ const SpendingsPage: React.FunctionComponent<ISpendingsPageProps> = (props) => {
   return (
     <>
       <PageWrapper>
-        <PageHeader pageTitle='Spendings'>
-        </PageHeader>
+        <PageHeader pageTitle='Spendings' />
         <RangePicker
           size='large'
           css={rangePickerStyle}
@@ -86,18 +83,6 @@ const SpendingsPage: React.FunctionComponent<ISpendingsPageProps> = (props) => {
       {
         isError && <h4>Something went wrong</h4>
       }
-
-      {/* <Bar
-        data={{
-          labels: ['A', 'B', 'C'],
-          datasets: [
-            {
-              label: 'Revenue',
-              data: [100, 200, 300]
-            }
-          ]
-        }}
-      /> */}
     </>
   )
 }

@@ -3,12 +3,13 @@ import { css } from '@emotion/react'
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation, useLazyLoginUserQuery } from 'src/services/auth/authApi';
 import { IRegisterUserForm } from 'src/models/models';
-import { LockOutlined, MailOutlined } from '@ant-design/icons';
 import { Button, Flex, Divider, Form, Input, Layout, Typography } from 'antd';
 import { mainColor } from 'src/styles/style-constants';
 import LogoNav from 'src/components/LogoNav';
 import { TbLetterN } from "react-icons/tb";
 import { TbLetterS } from "react-icons/tb";
+import { IoMailOutline } from "react-icons/io5";
+import { IoLockOpenOutline } from "react-icons/io5";
 
 const { Title, Text, Link } = Typography
 
@@ -115,7 +116,7 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 							]}
 						>
 							<Input
-								prefix={<MailOutlined style={{ opacity: '40%' }} />}
+								prefix={<IoMailOutline style={{ opacity: '40%' }} />}
 								placeholder="Email"
 							/>
 						</Form.Item>
@@ -125,7 +126,7 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 							rules={[{ required: true, message: "Please input your Password!", }]}
 						>
 							<Input.Password
-								prefix={<LockOutlined style={{ opacity: '40%' }} />}
+								prefix={<IoLockOpenOutline style={{ opacity: '40%' }} />}
 								type="password"
 								placeholder="Password"
 							/>

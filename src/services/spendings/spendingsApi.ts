@@ -1,7 +1,6 @@
 import { ISpendingRequest, ISpendingResponse } from 'src/models/models'
 import {api} from 'src/services/api'
-import {TAG_TYPES, SPENDINGS_URL} from 'src/data/constants'
-// import { ITableSpendings } from 'models/models'
+import {TAG_TYPES, SPENDINGS_URL, Methods} from 'src/data/constants'
 
 interface IParam {
 	start_date: string;
@@ -15,13 +14,14 @@ export const spendingsApi = api.injectEndpoints({
 				const { start_date, end_date } = arg;
 				return{
 						url: SPENDINGS_URL,
-						method: 'GET',
+						method: Methods.Get,
 						params: { start_date, end_date}
 				}
 			},
 			transformResponse: (response: ISpendingResponse[]): any => {
 				if (response && response.length){
 					return response.map(spending => ({
+						key: spending.id,
 						date: spending.date,
 						description: spending.description,
 						amount: {
@@ -38,7 +38,7 @@ export const spendingsApi = api.injectEndpoints({
 		addSpending: builder.mutation<ISpendingResponse, ISpendingRequest>({
 			query: (spending) => ({
 				url: SPENDINGS_URL,
-				method: 'POST',
+				method: Methods.Post,
 				body: spending
 			}),
 			invalidatesTags: [TAG_TYPES.SPENDINGS]
@@ -46,7 +46,7 @@ export const spendingsApi = api.injectEndpoints({
 		removeSpending: builder.mutation({
 			query: (id) => ({
 				url: `${SPENDINGS_URL}/${id}`,
-				method: 'DELETE'
+				method: Methods.Delete
 			}),
 			invalidatesTags: [TAG_TYPES.SPENDINGS]
 		})
