@@ -1,22 +1,33 @@
-import * as styles from 'src/styles/style-constants';
-import type { ColorPickerProps, GetProp } from 'antd';
 import { theme } from 'antd';
+
 const { defaultAlgorithm, darkAlgorithm } = theme;
 
-type Color = Exclude<GetProp<ColorPickerProps, 'value'>, string>;
+export const mainColor = '#5065F6'
+export const textColor = '#181818'
+export const mainDarkBg = '#282828'
 
-export const themeData = {
+export const themeData = (isDarkMode: boolean = false) => ({
   token: {
-    colorPrimary: '#5065F6',
-    colorLink: styles.mainColor,
+    colorPrimary: mainColor,
+    colorLink: mainColor
   },
   components: {
     Button: {
-      colorPrimary: '#5065F6',
-      algorithm: defaultAlgorithm,
+      colorPrimary: mainColor,
+      algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
     },
     Menu: {
       itemColor: '#626263',
-    }
+      darkItemBg: mainDarkBg,
+      darkSubMenuItemBg: '#202020',
+      darkPopupBg: mainDarkBg
+    },
+    Layout: {
+      headerPadding: '0 16px',
+      headerBg: isDarkMode ? mainDarkBg : 'white',
+      siderBg: mainDarkBg,
+      algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm
+    },
   },
-}
+  algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
+})

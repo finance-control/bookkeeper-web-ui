@@ -5,8 +5,6 @@ import App from './App';
 import { setupStore } from './store/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { ConfigProvider } from 'antd';
-import { themeData } from 'src/styles/theme';
 
 const store = setupStore()
 
@@ -18,11 +16,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <ConfigProvider
-          theme={themeData}
-        >
-          <App />
-        </ConfigProvider>
+        <App />
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

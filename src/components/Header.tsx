@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react"
 import UserLabel from './labels/UserLabel';
-import { Layout, Drawer, Grid } from 'antd';
-import TimeCounter from './DateWidget';
+import { Layout, Drawer, Grid, Switch, Flex } from 'antd';
 import { Twirl as BurgerIcon } from 'hamburger-react'
 import { IoClose } from "react-icons/io5";
 import LogoNav from 'src/components/LogoNav';
+import { RiMoonFill, RiSunFill } from "react-icons/ri";
+import { changeColorMode } from 'src/store/reducers/CommonSlice';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 
 const { useBreakpoint } = Grid;
-
-const { Header } = Layout
+const { Header: AntHeader } = Layout
 
 const headerStyle = (isXsBreakpoint: boolean | undefined) => css`
-	background-color: white;
-	padding: ${isXsBreakpoint ? '0 16px' : '0 24px'} !important;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: ${isXsBreakpoint ? '0px' : '16px'};
-	background-color: white;
-	border-radius: ${isXsBreakpoint ? '0' : '8px'};
-	border-bottom: ${isXsBreakpoint ? '1px solid rgba(0,0,0,0.05)' : 'none'};
 `
 
 const drawerStyle = css`
@@ -35,30 +30,60 @@ const drawerStyle = css`
 	}
 `
 
-interface ICustomHeaderProps {
+const switcherStyle = css`
+	.ant-switch-inner-unchecked{
+		display: flex !important;
+		align-items: center !important;
+	}
+	.ant-switch-inner-checked{
+		display: flex !important;
+		align-items: center !important;
+	}
+	margin-right: 8px;
+`
+
+interface IHeaderProps {
 	className?: string;
 }
 
-const CustomHeader: React.FunctionComponent<ICustomHeaderProps> = ({ className }) => {
+const Header: React.FunctionComponent<IHeaderProps> = ({ className }) => {
 	const { xs: isXsBreakpoint } = useBreakpoint();
 	const [isDrawerOpened, setIsDrawerOpened] = useState(false)
+	const dispatch = useAppDispatch()
+	const { isDarkMode } = useAppSelector(state => state.commonReducer)
 
 	const handleCloseDrawer = () => {
 		setIsDrawerOpened(false)
 	}
 
+	const handleChangeColorMode = () => {
+		dispatch(changeColorMode())
+	}
+
 	return (
 		<>
-			<Header css={headerStyle(isXsBreakpoint)}>
-				{!isXsBreakpoint && <TimeCounter />}
-				{!isXsBreakpoint && <UserLabel />}
+			<AntHeader css={headerStyle(isXsBreakpoint)}>
+
+				{!isXsBreakpoint && <h4>Welcome back</h4>}
+
+				{!isXsBreakpoint &&
+					<Flex align='center'>
+						<Switch
+							checkedChildren={<RiMoonFill />}
+							unCheckedChildren={<RiSunFill />}
+							defaultChecked={isDarkMode}
+							css={switcherStyle}
+							onClick={handleChangeColorMode}
+						/>
+						<UserLabel />
+					</Flex>}
 
 				{isXsBreakpoint && <LogoNav colorStyle='dark' />}
 				{isXsBreakpoint && <BurgerIcon
 					toggled={isDrawerOpened}
 					toggle={setIsDrawerOpened}
 					size={24}
-					color="#ededed"
+					color="#c5c5c5"
 				/>}
 				<Drawer
 					title={<UserLabel />}
@@ -72,9 +97,9 @@ const CustomHeader: React.FunctionComponent<ICustomHeaderProps> = ({ className }
 					<p>Some contents...</p>
 					<p>Some contents...</p>
 				</Drawer>
-			</Header>
+			</AntHeader>
 		</>
 	)
 };
 
-export default CustomHeader;
+export default Header;

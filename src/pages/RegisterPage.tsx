@@ -4,18 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation, useLazyLoginUserQuery } from 'src/services/auth/authApi';
 import { IRegisterUserForm } from 'src/models/models';
 import { Button, Flex, Divider, Form, Input, Layout, Typography } from 'antd';
-import { mainColor } from 'src/styles/style-constants';
 import LogoNav from 'src/components/LogoNav';
-import { TbLetterN } from "react-icons/tb";
-import { TbLetterS } from "react-icons/tb";
-import { IoMailOutline } from "react-icons/io5";
-import { IoLockOpenOutline } from "react-icons/io5";
 
 const { Title, Text, Link } = Typography
 
 const subtitleStyle = css`
 	margin-bottom: 2px !important;
-	color: ${mainColor} !important;
 `
 
 const formWrapperStyle = css`
@@ -85,7 +79,6 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 							]}
 						>
 							<Input
-								prefix={<TbLetterN style={{ opacity: '40%' }} />}
 								placeholder="Name"
 							/>
 						</Form.Item>
@@ -100,7 +93,6 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 							]}
 						>
 							<Input
-								prefix={<TbLetterS style={{ opacity: '40%' }} />}
 								placeholder="Surname"
 							/>
 						</Form.Item>
@@ -116,7 +108,6 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 							]}
 						>
 							<Input
-								prefix={<IoMailOutline style={{ opacity: '40%' }} />}
 								placeholder="Email"
 							/>
 						</Form.Item>
@@ -126,7 +117,6 @@ const Register: React.FunctionComponent<IRegisterProps> = (props) => {
 							rules={[{ required: true, message: "Please input your Password!", }]}
 						>
 							<Input.Password
-								prefix={<IoLockOpenOutline style={{ opacity: '40%' }} />}
 								type="password"
 								placeholder="Password"
 							/>

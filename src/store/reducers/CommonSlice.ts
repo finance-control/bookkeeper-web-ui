@@ -1,22 +1,22 @@
 import {createSlice} from "@reduxjs/toolkit"
 
 interface CommonState {
-	showModal: boolean;
+	isDarkMode: boolean;
 }
 
 const initialState: CommonState = {
-	showModal: false
+	isDarkMode: false
 }
 
 const commonSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers:{
-		changeShowModal: (state) => {
-			state.showModal = !state.showModal
+		changeColorMode: (state) => {
+			state.isDarkMode = !state.isDarkMode
 		}
 	}
 })
 
-export const {changeShowModal} = commonSlice.actions 
+export const {changeColorMode} = commonSlice.actions 
 export default commonSlice.reducer

@@ -3,7 +3,7 @@ import { Layout, Typography } from 'antd';
 import { css } from '@emotion/react';
 
 const { Text } = Typography;
-const { Footer } = Layout;
+const { Footer: AntFooter } = Layout;
 
 const footerStyle = css`
   display: flex;
@@ -11,15 +11,15 @@ const footerStyle = css`
   align-items: center;
 `
 
-interface ICustomFooterProps {
+interface IFooterProps {
 }
 
-const CustomFooter: React.FunctionComponent<ICustomFooterProps> = (props) => {
+const Footer: React.FunctionComponent<IFooterProps> = (props) => {
   return (
-    <Footer css={footerStyle}>
+    <AntFooter css={footerStyle}>
       <Text type="secondary">2024 Finance Control</Text>
-    </Footer>
+    </AntFooter>
   )
 };
 
-export default CustomFooter;
+export default Footer;

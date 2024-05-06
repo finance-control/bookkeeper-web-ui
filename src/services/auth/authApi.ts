@@ -19,14 +19,14 @@ export const authApi = api.injectEndpoints({
 			}),
 			async onQueryStarted(userData, { dispatch, queryFulfilled }) {
 				try {
-					const { data } = await queryFulfilled;
+					const { data } = await queryFulfilled
 					if (Cookies.get(USER_DATA_COOKIE)){
 						Cookies.remove(USER_DATA_COOKIE)
 					}
 					Cookies.set(USER_DATA_COOKIE, userData, { expires: COOKIES_EXPIRED_TIME })
 					return data
 				} catch (err) {
-					console.error(err);
+					console.error(err)
 				}
 			}
 		}),

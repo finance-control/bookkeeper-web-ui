@@ -1,18 +1,18 @@
 import { Outlet, Navigate } from 'react-router-dom';
 import { Layout } from 'antd';
 import Cookies from 'js-cookie';
-import CustomSider from "src/components/CustomSider"
-import CustomHeader from "src/components/CustomHeader"
-import CustomFooter from 'src/components/CustomFooter';
+import Sider from "src/components/Sider"
+import Header from "src/components/Header"
+import Footer from 'src/components/Footer';
 
 const PrivateRoute = () => {
   return Cookies.get('userData') ?
     <Layout>
-      <CustomSider />
+      <Sider />
       <Layout>
-        <CustomHeader />
+        <Header />
         <Outlet />
-        <CustomFooter />
+        <Footer />
       </Layout>
     </Layout>
     : <Navigate to="/login" replace />;

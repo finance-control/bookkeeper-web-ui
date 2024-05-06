@@ -11,27 +11,37 @@ import SpendingsPage from 'src/pages/SpendingsPage';
 import AddSpendingPage from 'src/pages/AddSpendingPage';
 import ReportsPage from 'src/pages/ReportsPage';
 import { PathRoutes } from './data/constants';
+import { ConfigProvider } from 'antd';
+import { themeData } from 'src/styles/theme';
+import { useAppSelector } from 'src/hooks/redux';
 
 function App() {
+  const { isDarkMode } = useAppSelector(state => state.commonReducer)
+
   return (
     <>
-      <Routes>
-        {/* Public routes */}
-        <Route path={PathRoutes.Login} element={<LoginPage />} />
-        <Route path={PathRoutes.Register} element={<RegisterPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+      <ConfigProvider
+        theme={themeData(isDarkMode)}
+      >
+        <Routes>
+          {/* Public routes */}
+          <Route path={PathRoutes.Login} element={<LoginPage />} />
+          <Route path={PathRoutes.Register} element={<RegisterPage />} />
+          <Route path="*" element={<NotFoundPage />} />
 
-        {/* Private route using PrivateRoute component */}
-        <Route path={PathRoutes.Home} element={<PrivateRoute />}>
-          <Route path={PathRoutes.Home} element={<HomePage />} />
-          <Route path={PathRoutes.Profile} element={<ProfilePage />} />
-          <Route path={PathRoutes.Categories} element={<CategoriesPage />} />
-          <Route path={PathRoutes.AddCategory} element={<AddCategoryPage />} />
-          <Route path={PathRoutes.Spendings} element={<SpendingsPage />} />
-          <Route path={PathRoutes.AddSpending} element={<AddSpendingPage />} />
-          <Route path={PathRoutes.SpendingsReport} element={<ReportsPage />} />
-        </Route>
-      </Routes>
+          {/* Private route using PrivateRoute component */}
+          <Route path={PathRoutes.Home} element={<PrivateRoute />}>
+            <Route path={PathRoutes.Home} element={<HomePage />} />
+            <Route path={PathRoutes.Profile} element={<ProfilePage />} />
+            <Route path={PathRoutes.Categories} element={<CategoriesPage />} />
+            <Route path={PathRoutes.AddCategory} element={<AddCategoryPage />} />
+            <Route path={PathRoutes.Spendings} element={<SpendingsPage />} />
+            <Route path={PathRoutes.AddSpending} element={<AddSpendingPage />} />
+            <Route path={PathRoutes.SpendingsReport} element={<ReportsPage />} />
+          </Route>
+        </Routes>
+      </ConfigProvider>
+
     </>
   )
 }

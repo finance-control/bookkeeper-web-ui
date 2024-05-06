@@ -9,6 +9,17 @@ const buttonStyle = css`
 	height: auto !important;
 `
 
+const nameStyle = css`
+	font-size: 14px;
+	margin-right: 4px;
+	font-weight: 500;
+`
+
+const surnameStyle = css`
+	font-size: 14px;
+	font-weight: 500;
+`
+
 interface IUserLabelProps {
 }
 
@@ -30,8 +41,8 @@ const UserLabel: React.FunctionComponent<IUserLabelProps> = (props) => {
 			>
 				{data && <Flex align='center' justify='center'>
 					<UserAvatar />
-					<h6 css={css`font-size: 16px; margin-right: 4px;`}>{data.name}</h6>
-					<h6 css={css`font-size: 16px;`}>{data.surname}</h6>
+					<h6 css={nameStyle}>{data.name}</h6>
+					<h6 css={surnameStyle}>{data.surname}</h6>
 				</Flex>}
 				{isError && <p>No User Data</p>}
 			</Button>

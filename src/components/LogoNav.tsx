@@ -2,13 +2,13 @@ import * as React from 'react';
 import { css } from "@emotion/react"
 import { Flex } from 'antd'
 import { SiMoneygram } from "react-icons/si";
-import { mainColor } from 'src/styles/style-constants';
+import { mainColor } from 'src/styles/theme';
 
 type size = 'medium' | 'large'
 
 const logoStyle = (size: size, isLogoMinified: boolean) => css`
   color: ${mainColor};
-  font-size: ${size == 'medium' ? '20px' : '32px'};
+  font-size: ${size == 'medium' ? '24px' : '32px'};
   margin-right: ${isLogoMinified ? '0px' : '10px'};
 `
 
@@ -17,7 +17,7 @@ const logoTextStyle = (colorStyle: 'dark' | 'light', size: size) => css`
   font-size: ${size == 'medium' ? '18px' : '32px'};
   font-weight: ${size == 'medium' ? '600' : '600'};
   white-space: nowrap;
-  color: #3b3b3b;
+  color: ${colorStyle === 'dark' ? '#3b3b3b' : '#e1e1e1'};
 `
 
 interface ILogoNavProps {

@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { useAppDispatch } from 'src/hooks/redux';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import { Menu, Modal } from 'antd'
 import { css } from '@emotion/react'
 import { AiOutlineUser } from 'react-icons/ai'
@@ -10,7 +10,6 @@ import { MdOutlineSpaceDashboard } from "react-icons/md";
 import type { MenuProps } from 'antd';
 import LogoNav from './LogoNav';
 import { useNavigate } from "react-router-dom";
-import { useState } from 'react';
 import Cookies from "js-cookie"
 import { userLogout } from 'src/store/reducers/UserSlice'
 import { PathRoutes } from 'src/data/constants';
@@ -61,12 +60,10 @@ const menuBarStyle = css`
 `
 
 const logoWrapperStyle = css`
-  margin-top: 16px;
   height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
 `
 
 interface ISideBarProps {
@@ -77,6 +74,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
   const [openModal, setOpenModal] = useState(false);
+  const { isDarkMode } = useAppSelector(state => state.commonReducer)
 
   const handleOnClick: MenuProps['onClick'] = (e) => {
     const key = e.key
@@ -106,7 +104,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
     <div>
       <div css={logoWrapperStyle}>
         <LogoNav
-          colorStyle='dark'
+          colorStyle={isDarkMode ? 'light' : 'dark'}
           isLogoMinified={isCollapsed}
         />
       </div>
@@ -114,7 +112,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
       <Menu
         onClick={handleOnClick}
         mode='inline'
-        theme='light'
+        theme={isDarkMode ? 'dark' : 'light'}
         defaultSelectedKeys={['1']}
         items={items}
         css={menuBarStyle}
