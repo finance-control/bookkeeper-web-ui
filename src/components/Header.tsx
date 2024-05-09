@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react"
 import UserLabel from './labels/UserLabel';
-import { Layout, Drawer, Grid, Switch, Flex } from 'antd';
+import { Layout, Drawer, Grid, Flex, Button, Divider, Space } from 'antd';
 import { Twirl as BurgerIcon } from 'hamburger-react'
 import { IoClose } from "react-icons/io5";
 import LogoNav from 'src/components/LogoNav';
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
 import { changeColorMode } from 'src/store/reducers/CommonSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
+import DateWidget from 'src/components/widgets/DateWidget';
+import GreetingWidget from 'src/components/widgets/GreetingWidget';
 
 const { useBreakpoint } = Grid;
 const { Header: AntHeader } = Layout
@@ -16,6 +17,7 @@ const headerStyle = (isXsBreakpoint: boolean | undefined) => css`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	line-height: normal !important;
 `
 
 const drawerStyle = css`
@@ -30,18 +32,6 @@ const drawerStyle = css`
 	}
 `
 
-const switcherStyle = css`
-	.ant-switch-inner-unchecked{
-		display: flex !important;
-		align-items: center !important;
-	}
-	.ant-switch-inner-checked{
-		display: flex !important;
-		align-items: center !important;
-	}
-	margin-right: 8px;
-`
-
 interface IHeaderProps {
 	className?: string;
 }
@@ -50,40 +40,36 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ className }) => {
 	const { xs: isXsBreakpoint } = useBreakpoint();
 	const [isDrawerOpened, setIsDrawerOpened] = useState(false)
 	const dispatch = useAppDispatch()
-	const { isDarkMode } = useAppSelector(state => state.commonReducer)
 
 	const handleCloseDrawer = () => {
 		setIsDrawerOpened(false)
-	}
-
-	const handleChangeColorMode = () => {
-		dispatch(changeColorMode())
 	}
 
 	return (
 		<>
 			<AntHeader css={headerStyle(isXsBreakpoint)}>
 
-				{!isXsBreakpoint && <h4>Welcome back</h4>}
+				{!isXsBreakpoint &&
+					<Flex vertical>
+						<GreetingWidget />
+						<Divider style={{ marginTop: 0, marginBottom: 6 }} />
+						<DateWidget />
+					</Flex>
+				}
 
 				{!isXsBreakpoint &&
-					<Flex align='center'>
-						<Switch
-							checkedChildren={<RiMoonFill />}
-							unCheckedChildren={<RiSunFill />}
-							defaultChecked={isDarkMode}
-							css={switcherStyle}
-							onClick={handleChangeColorMode}
-						/>
+					<Space>
+						<Button type='primary'>
+							Add transaction
+						</Button>
 						<UserLabel />
-					</Flex>}
+					</Space>}
 
-				{isXsBreakpoint && <LogoNav colorStyle='dark' />}
+				{isXsBreakpoint && <LogoNav />}
 				{isXsBreakpoint && <BurgerIcon
 					toggled={isDrawerOpened}
 					toggle={setIsDrawerOpened}
 					size={24}
-					color="#c5c5c5"
 				/>}
 				<Drawer
 					title={<UserLabel />}

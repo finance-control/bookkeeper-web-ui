@@ -4,7 +4,6 @@ import { AiOutlineUser } from "react-icons/ai";
 import { css } from '@emotion/react'
 
 const avatarStyle = css`
-	margin-right: 6px;
 	background-color: #ced4ff;
 	color: #5065F6;
 `

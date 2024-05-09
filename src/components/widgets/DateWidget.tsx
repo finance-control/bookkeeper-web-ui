@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Flex } from 'antd';
 import { useEffect, useState } from 'react';
 import { css } from "@emotion/react"
-import SpinLoader from './loaders/SpinLoader';
+import SpinLoader from 'src/components/loaders/SpinLoader';
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
@@ -23,12 +23,12 @@ const DateWidget: React.FunctionComponent<IDateWidgetProps> = (props) => {
   useEffect(() => {
     setLoading(true)
     const intervalId = setInterval(() => {
-      const d = new Date();
+      const date = new Date();
       setDate({
-        dayMonth: d.getDate().toString(),
-        month: months[d.getMonth()],
-        hours: d.getHours() < 10 ? `0${d.getHours()}` : d.getHours().toString(),
-        minutes: d.getMinutes() < 10 ? `0${d.getMinutes()}` : d.getMinutes().toString()
+        dayMonth: date.getDate().toString(),
+        month: months[date.getMonth()],
+        hours: date.getHours() < 10 ? `0${date.getHours()}` : date.getHours().toString(),
+        minutes: date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes().toString()
       })
     }, 1000)
     return () => clearInterval(intervalId)
@@ -45,9 +45,9 @@ const DateWidget: React.FunctionComponent<IDateWidgetProps> = (props) => {
       {loading ?
         <SpinLoader />
         : <Flex>
-          <h6 css={css`margin-right: 2px; font-size: 16px;`}>{date.dayMonth}</h6>
-          <h6 css={css`margin-right:4px; font-size: 16px;`}>{date.month}</h6>
-          <h6 css={css`font-size: 16px;`}>{`${date.hours}:${date.minutes}`}</h6>
+          <h6 css={css`font-size: 16px; margin-right: 4px;`}>{`${date.hours}:${date.minutes}`}</h6>
+          <h6 css={css`font-size: 12px; font-weight: 500; margin-right: 2px;`}>{date.dayMonth}</h6>
+          <h6 css={css`font-size: 12px; font-weight: 500; `}>{date.month}</h6>
         </Flex>}
     </>
   )

@@ -1,11 +1,12 @@
-import {api} from 'src/services/api'
+import { api } from 'src/services/api'
 import Cookies from "js-cookie"
-import {	SIGN_IN_URL,
-					SIGN_UP_URL,
-					USER_DATA_COOKIE,
-					COOKIES_EXPIRED_TIME,
-					Methods
-				} from 'src/data/constants'
+import {
+	SIGN_IN_URL,
+	SIGN_UP_URL,
+	USER_DATA_COOKIE,
+	COOKIES_EXPIRED_TIME,
+	Methods
+} from 'src/data/constants'
 
 export const authApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -20,13 +21,13 @@ export const authApi = api.injectEndpoints({
 			async onQueryStarted(userData, { dispatch, queryFulfilled }) {
 				try {
 					const { data } = await queryFulfilled
-					if (Cookies.get(USER_DATA_COOKIE)){
+					if (Cookies.get(USER_DATA_COOKIE)) {
 						Cookies.remove(USER_DATA_COOKIE)
 					}
 					Cookies.set(USER_DATA_COOKIE, userData, { expires: COOKIES_EXPIRED_TIME })
 					return data
 				} catch (err) {
-					console.error(err)
+					throw new Error('Failed to login')
 				}
 			}
 		}),
@@ -40,4 +41,4 @@ export const authApi = api.injectEndpoints({
 	}),
 })
 
-export const {useLazyLoginUserQuery, useRegisterUserMutation} = authApi
+export const { useLazyLoginUserQuery, useRegisterUserMutation } = authApi

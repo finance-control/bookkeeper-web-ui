@@ -7,12 +7,12 @@ import PrivateRoute from 'src/routes/PrivateRoute'
 import ProfilePage from 'src/pages/ProfilePage'
 import CategoriesPage from 'src/pages/CategoriesPage'
 import AddCategoryPage from 'src/pages/AddCategoryPage';
-import SpendingsPage from 'src/pages/SpendingsPage';
 import AddSpendingPage from 'src/pages/AddSpendingPage';
 import ReportsPage from 'src/pages/ReportsPage';
+import HistoryPage from 'src/pages/HistoryPage';
 import { PathRoutes } from './data/constants';
 import { ConfigProvider } from 'antd';
-import { themeData } from 'src/styles/theme';
+import { getThemeData } from 'src/styles/theme';
 import { useAppSelector } from 'src/hooks/redux';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   return (
     <>
       <ConfigProvider
-        theme={themeData(isDarkMode)}
+        theme={getThemeData(isDarkMode)}
       >
         <Routes>
           {/* Public routes */}
@@ -33,11 +33,11 @@ function App() {
           <Route path={PathRoutes.Home} element={<PrivateRoute />}>
             <Route path={PathRoutes.Home} element={<HomePage />} />
             <Route path={PathRoutes.Profile} element={<ProfilePage />} />
+            <Route path={PathRoutes.History} element={<HistoryPage />} />
             <Route path={PathRoutes.Categories} element={<CategoriesPage />} />
             <Route path={PathRoutes.AddCategory} element={<AddCategoryPage />} />
-            <Route path={PathRoutes.Spendings} element={<SpendingsPage />} />
             <Route path={PathRoutes.AddSpending} element={<AddSpendingPage />} />
-            <Route path={PathRoutes.SpendingsReport} element={<ReportsPage />} />
+            <Route path={PathRoutes.Reports} element={<ReportsPage />} />
           </Route>
         </Routes>
       </ConfigProvider>

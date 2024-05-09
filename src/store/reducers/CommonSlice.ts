@@ -1,22 +1,22 @@
-import {createSlice} from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit"
 
 interface CommonState {
 	isDarkMode: boolean;
 }
 
 const initialState: CommonState = {
-	isDarkMode: false
+	isDarkMode: window.matchMedia('(prefers-color-scheme: dark)').matches
 }
 
 const commonSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers:{
+	reducers: {
 		changeColorMode: (state) => {
 			state.isDarkMode = !state.isDarkMode
 		}
 	}
 })
 
-export const {changeColorMode} = commonSlice.actions 
+export const { changeColorMode } = commonSlice.actions
 export default commonSlice.reducer

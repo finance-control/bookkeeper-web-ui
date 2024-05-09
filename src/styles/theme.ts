@@ -6,10 +6,11 @@ export const mainColor = '#5065F6'
 export const textColor = '#181818'
 export const mainDarkBg = '#282828'
 
-export const themeData = (isDarkMode: boolean = false) => ({
+export const getThemeData = (isDarkMode: boolean = false) => ({
   token: {
     colorPrimary: mainColor,
-    colorLink: mainColor
+    colorLink: isDarkMode ? 'white' : textColor,
+    borderRadius: 8
   },
   components: {
     Button: {
@@ -28,6 +29,10 @@ export const themeData = (isDarkMode: boolean = false) => ({
       siderBg: mainDarkBg,
       algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm
     },
+    Typography: {
+      titleMarginBottom: 0,
+      titleMarginTop: 0
+    }
   },
   algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm,
 })

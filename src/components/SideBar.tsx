@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
-import { Menu, Modal } from 'antd'
+import { Menu, Modal, Button } from 'antd'
 import { css } from '@emotion/react'
-import { AiOutlineUser } from 'react-icons/ai'
-import { RiShoppingBasketLine } from "react-icons/ri";
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
-import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineSpaceDashboard, MdOutlineAddCircleOutline } from "react-icons/md";
+import { HiOutlineDocumentReport } from "react-icons/hi";
+import { IoMdList } from "react-icons/io";
+import { LuSun, LuMoon, LuSettings, LuWalletCards } from "react-icons/lu";
 import type { MenuProps } from 'antd';
 import LogoNav from './LogoNav';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { userLogout } from 'src/store/reducers/UserSlice'
 import { PathRoutes } from 'src/data/constants';
+import { changeColorMode } from 'src/store/reducers/CommonSlice';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -32,20 +34,50 @@ function getItem(
   } as MenuItem;
 }
 
-const items: MenuProps['items'] = [
-  getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
-  getItem('Categories', 'sub1', <BiCategoryAlt />, [
-    getItem('View categories', PathRoutes.Categories),
-    getItem('Add category', PathRoutes.AddCategory),
-  ]),
-  getItem('Spendings', 'sub2', <RiShoppingBasketLine />, [
-    getItem('View spendings', PathRoutes.Spendings),
-    getItem('Add spending', PathRoutes.AddSpending),
-    getItem('Reports', PathRoutes.SpendingsReport),
-  ]),
-  getItem('Profile', PathRoutes.Profile, <AiOutlineUser />),
-  getItem('Logout', PathRoutes.Logout, <MdLogout />),
-];
+const getItems = (isDarkMode: boolean = false): MenuProps['items'] => {
+  return [
+    getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
+    getItem('Add transaction', 'sub1', <MdOutlineAddCircleOutline />, [
+      getItem('Transfer', PathRoutes.Categories),
+      getItem('Spending', PathRoutes.AddSpending),
+    ]),
+    getItem('History', PathRoutes.History, <IoMdList />),
+    getItem('Categories', PathRoutes.Categories, <BiCategoryAlt />),
+    getItem('Accounts', PathRoutes.Accounts, <LuWalletCards />),
+    getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
+    getItem('Logout', PathRoutes.Logout, <MdLogout />),
+    {
+      type: 'divider'
+    },
+    getItem('Settings', PathRoutes.Settings, <LuSettings />),
+    getItem(isDarkMode ? 'Set light mode' : 'Set dark mode',
+      PathRoutes.ChangeColorMode,
+      isDarkMode ? <LuSun /> : <LuMoon />),
+  ];
+}
+
+// const items: MenuProps['items'] = [
+//   getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
+//   getItem('Add operation', 'sub1', <MdOutlineAddCircleOutline />, [
+//     getItem('Transfer', PathRoutes.Categories),
+//     getItem('Spending', PathRoutes.AddCategory),
+//   ]),
+//   getItem('History', PathRoutes.Categories, <IoMdList />),
+//   getItem('Categories', 'sub2', <BiCategoryAlt />, [
+//     getItem('View categories', PathRoutes.Categories),
+//     getItem('Add category', PathRoutes.AddCategory),
+//   ]),
+//   getItem('Accounts', 'sub3', <RiShoppingBasketLine />, [
+//     getItem('Accounts', PathRoutes.Spendings),
+//     getItem('Add account', PathRoutes.AddSpending),
+//   ]),
+//   getItem('Spendings', 'sub3', <RiShoppingBasketLine />, [
+//     getItem('View spendings', PathRoutes.Spendings),
+//     getItem('Add spending', PathRoutes.AddSpending),
+//   ]),
+//   getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
+//   getItem('Logout', PathRoutes.Logout, <MdLogout />),
+// ];
 
 const menuBarStyle = css`
   display: flex;
@@ -56,6 +88,10 @@ const menuBarStyle = css`
 
   .ant-menu-item-divider{
     border-color: rgba(255, 255,255, 0.1) !important;
+  }
+
+  .ant-menu-item-icon{
+    font-size: 18px !important;
   }
 `
 
@@ -78,10 +114,18 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
 
   const handleOnClick: MenuProps['onClick'] = (e) => {
     const key = e.key
-    if (key === PathRoutes.Logout) {
-      showModal()
-    } else {
-      navigate(`${key}`)
+    switch (key) {
+      case PathRoutes.Logout:
+        showModal()
+        break;
+
+      case PathRoutes.ChangeColorMode:
+        dispatch(changeColorMode())
+        break;
+
+      default:
+        navigate(`${key}`)
+        break;
     }
   };
 
@@ -103,10 +147,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
   return (
     <div>
       <div css={logoWrapperStyle}>
-        <LogoNav
-          colorStyle={isDarkMode ? 'light' : 'dark'}
-          isLogoMinified={isCollapsed}
-        />
+        <LogoNav isLogoMinified={isCollapsed} />
       </div>
 
       <Menu
@@ -114,7 +155,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
         mode='inline'
         theme={isDarkMode ? 'dark' : 'light'}
         defaultSelectedKeys={['1']}
-        items={items}
+        items={getItems(isDarkMode)}
         css={menuBarStyle}
       />
 

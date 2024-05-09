@@ -2,8 +2,7 @@ import PageWrapper from 'src/components/PageWrapper'
 import PageHeader from 'src/components/PageHeader';
 import { useGetUserQuery } from 'src/services/user/userApi';
 import UserAvatar from 'src/components/shared/UserAvatar';
-import { Flex, Space } from 'antd';
-import { Typography } from 'antd';
+import { Flex, Space, Typography } from 'antd';
 import { css } from '@emotion/react';
 
 const { Title } = Typography
@@ -21,13 +20,12 @@ export interface IProfilePageProps {
 }
 
 export default function ProfilePage(props: IProfilePageProps) {
-
 	const { data, isLoading, isError } = useGetUserQuery({})
 
 	return (
 		<div>
 			<PageWrapper>
-				<PageHeader pageTitle='Profile' />
+				<PageHeader pageTitle='Your Profile' />
 				<Space>
 					<Flex align='center'>
 						<UserAvatar size={128} css={css`margin-right: 16px;`} />

@@ -8,7 +8,7 @@ import { mainDarkBg } from 'src/styles/theme';
 
 const { Sider: AntSider } = Layout
 
-const siderStyle = (isDarkMode: boolean | undefined) => css`
+const siderStyle = (isDarkMode: boolean = false) => css`
 	position: sticky !important;
 	height: 100vh;
 	top: 0;
@@ -22,17 +22,12 @@ const siderStyle = (isDarkMode: boolean | undefined) => css`
 	}
 `
 
-const collapseButtonStyle = (isDarkMode: boolean | undefined) => css`
+const collapseButtonStyle = (isDarkMode: boolean = false) => css`
 	font-size: 16px;
-	width: 50px;
 	height: 50px;
 	position: absolute;
 	bottom: 0;
-	background-color: ${isDarkMode ? mainDarkBg : '#ffffff'} ;
 	border-radius: 0px !important;
-	&:hover{
-		background-color: ${isDarkMode ? '#343434' : '#f8f8f8'}  !important;
-	}
 `
 
 interface ISiderProps {

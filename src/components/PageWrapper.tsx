@@ -2,14 +2,15 @@ import * as React from 'react';
 import { Layout, Grid } from 'antd'
 import { css } from '@emotion/react'
 import { useAppSelector } from 'src/hooks/redux';
+import { mainDarkBg } from 'src/styles/theme';
 
 const { Content } = Layout
 const { useBreakpoint } = Grid
 
 const contentStyle = (isXsBreakpoint: boolean | undefined, isDarkMode: boolean | undefined) => css`
 	margin: ${isXsBreakpoint ? '0px' : '16px'};
-	padding: ${isXsBreakpoint ? '16px' : '24px'};
-	background-color: ${isDarkMode ? '#282828' : 'white'};
+	padding: 16px;
+	background-color: ${isDarkMode ? mainDarkBg : 'white'};
 	border-radius: ${isXsBreakpoint ? '0' : '8px'};
 `
 

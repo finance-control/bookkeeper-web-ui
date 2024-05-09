@@ -1,4 +1,4 @@
-export const BASE_URL:string = 'http://localhost:8080';
+export const BASE_URL: string = 'http://localhost:8080';
 export const SIGN_IN_URL: string = '/api/v1/users/signing';
 export const SIGN_UP_URL: string = '/api/v1/users/registration';
 export const CATEGORIES_URL: string = '/api/v1/categories'
@@ -7,7 +7,7 @@ export const SPENDINGS_URL: string = '/api/v1/spendings'
 export const CURRENT_USER_URL: string = '/api/v1/users/current'
 
 export const USER_DATA_COOKIE: string = 'userData'
-export const COOKIES_EXPIRED_TIME:number = 3; // 3 days expired
+export const COOKIES_EXPIRED_TIME: number = 3; // 3 days expired
 
 export enum Methods {
   Get = 'GET',
@@ -23,13 +23,18 @@ export enum TAG_TYPES {
 
 export enum PathRoutes {
   Home = '/',
+  AddTransaction = '/add_transaction',
+  History = '/history',
+  Accounts = '/accounts',
   Categories = '/categories',
+  Settings = '/settings',
   AddCategory = '/add_category',
-  Spendings = '/spendings',
   AddSpending = '/add_spending',
-  SpendingsReport = '/spendings_report',
+  AddTransfer = '/add_transfer',
   Profile = '/profile',
   Logout = '/logout',
   Login = '/login',
-  Register = '/register'
+  Register = '/register',
+  Reports = '/reports',
+  ChangeColorMode = '/change_color_mode'
 }
