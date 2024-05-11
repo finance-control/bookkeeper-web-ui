@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
-import { Menu, Modal, Button } from 'antd'
+import { Menu, Modal } from 'antd'
 import { css } from '@emotion/react'
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
@@ -30,7 +30,7 @@ function getItem(
     icon,
     children,
     label,
-    type,
+    type
   } as MenuItem;
 }
 
@@ -55,29 +55,6 @@ const getItems = (isDarkMode: boolean = false): MenuProps['items'] => {
       isDarkMode ? <LuSun /> : <LuMoon />),
   ];
 }
-
-// const items: MenuProps['items'] = [
-//   getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
-//   getItem('Add operation', 'sub1', <MdOutlineAddCircleOutline />, [
-//     getItem('Transfer', PathRoutes.Categories),
-//     getItem('Spending', PathRoutes.AddCategory),
-//   ]),
-//   getItem('History', PathRoutes.Categories, <IoMdList />),
-//   getItem('Categories', 'sub2', <BiCategoryAlt />, [
-//     getItem('View categories', PathRoutes.Categories),
-//     getItem('Add category', PathRoutes.AddCategory),
-//   ]),
-//   getItem('Accounts', 'sub3', <RiShoppingBasketLine />, [
-//     getItem('Accounts', PathRoutes.Spendings),
-//     getItem('Add account', PathRoutes.AddSpending),
-//   ]),
-//   getItem('Spendings', 'sub3', <RiShoppingBasketLine />, [
-//     getItem('View spendings', PathRoutes.Spendings),
-//     getItem('Add spending', PathRoutes.AddSpending),
-//   ]),
-//   getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
-//   getItem('Logout', PathRoutes.Logout, <MdLogout />),
-// ];
 
 const menuBarStyle = css`
   display: flex;

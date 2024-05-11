@@ -1,5 +1,12 @@
 # React + TypeScript + Vite
 
+For run application follow steps:
+
+1. `npm i`
+2. `npm run dev`
+
+Application will started at localhost:3000
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
@@ -15,13 +22,13 @@ If you are developing a production application, we recommend updating the config
 
 ```js
 export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
+	// other rules...
+	parserOptions: {
+		ecmaVersion: 'latest',
+		sourceType: 'module',
+		project: ['./tsconfig.json', './tsconfig.node.json'],
+		tsconfigRootDir: __dirname,
+	},
 }
 ```
 

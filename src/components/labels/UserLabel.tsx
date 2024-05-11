@@ -40,13 +40,11 @@ interface IUserLabelProps {
 }
 
 const UserLabel: React.FunctionComponent<IUserLabelProps> = (props) => {
-
 	const { data, isLoading, isError } = useGetUserQuery({})
 	const navigate = useNavigate();
 	const handleOnClick = () => {
 		navigate("/profile")
 	}
-
 	return (
 		<>
 			<Button

@@ -141,20 +141,22 @@ const AddSpendingPage: React.FunctionComponent<IAddSpendingPageProps> = (props) 
             currencyCode: 'USD'
           }}
         >
-          <Row gutter={[16, 16]}>
+          <Row gutter={[8, 8]}>
             <Col md={8} xs={24}>
-              <Form.Item label="Category" name="categoryId" rules={[{ required: true, message: 'Please choose category' }]}>
-                <Select
-                  showSearch
-                  placeholder="Select category"
-                  optionFilterProp="children"
-                  filterOption={filterOption}
-                  options={getCategoriesData()}
-                  size='large'
+              <Form.Item
+                name="amount"
+                label="Amount"
+                rules={[{ required: true, message: 'Please type amount' }]}
+              >
+                <InputNumber
+                  type="number"
+                  addonAfter={getCurrencies()}
+                  size="large"
+                  min={0.1}
                   style={{ width: '100%' }}
-                  title='categoryId'
                 />
               </Form.Item>
+
             </Col>
 
             <Col md={8} xs={24}>
@@ -170,17 +172,16 @@ const AddSpendingPage: React.FunctionComponent<IAddSpendingPageProps> = (props) 
             </Col>
 
             <Col md={8} xs={24}>
-              <Form.Item
-                name="amount"
-                label="Amount"
-                rules={[{ required: true, message: 'Please type amount' }]}
-              >
-                <InputNumber
-                  type="number"
-                  addonAfter={getCurrencies()}
-                  size="large"
-                  min={0.1}
+              <Form.Item label="Category" name="categoryId" rules={[{ required: true, message: 'Please choose category' }]}>
+                <Select
+                  showSearch
+                  placeholder="Select category"
+                  optionFilterProp="children"
+                  filterOption={filterOption}
+                  options={getCategoriesData()}
+                  size='large'
                   style={{ width: '100%' }}
+                  title='categoryId'
                 />
               </Form.Item>
             </Col>

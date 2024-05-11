@@ -1,30 +1,36 @@
 import * as React from 'react';
 import { css } from '@emotion/react'
-import { Typography, Space } from 'antd';
+import { Typography, Flex } from 'antd';
 import ButtonBack from './shared/ButtonBack';
 
 const { Title } = Typography
 
 const pageHeaderStyle = css`
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   width: 100%;
 `
 
 interface IPageHeaderProps {
   pageTitle: string;
   children?: React.ReactNode;
+  subtitle?: React.ReactNode;
   className?: string;
 }
 
-const PageHeader: React.FunctionComponent<IPageHeaderProps> = ({ pageTitle, children, className }) => {
+const PageHeader: React.FunctionComponent<IPageHeaderProps> = ({ pageTitle, children, subtitle, className }) => {
   return (
-    <Space css={pageHeaderStyle} align='start'>
-      <ButtonBack css={css`margin-top: 4px;`} />
-      <Space direction='vertical' size={0}>
-        <Title level={2}>{pageTitle}</Title>
-        {children}
-      </Space>
-    </Space>
+    <Flex css={pageHeaderStyle} align='center'>
+      <ButtonBack css={css`
+        margin-right: 8px;
+      `} />
+      <div style={{ flexGrow: 1 }}>
+        <Flex align='center' justify='space-between' wrap>
+          <Title level={2}>{pageTitle}</Title>
+          {children}
+        </Flex>
+        {subtitle}
+      </div>
+    </Flex>
   )
 };
 

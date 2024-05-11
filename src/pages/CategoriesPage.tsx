@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css } from "@emotion/react"
 import PageWrapper from 'src/components/PageWrapper'
-import { Col, Space, Row, Skeleton } from 'antd';
+import { Col, Space, Row, Skeleton, Button, Flex, Typography } from 'antd';
 import PageHeader from 'src/components/PageHeader';
 import { useGetCategoriesQuery } from 'src/services/categories/categoriesApi';
 import { ICategory } from 'src/models/models';
@@ -10,6 +10,8 @@ import ErrorLabel from 'src/components/labels/ErrorLabel';
 import { lazy, Suspense } from 'react';
 
 const CategorieBlock = lazy(() => import('src/components/CategorieBlock'));
+
+const { Title } = Typography
 
 interface ICategoriesPageProps {
 }
@@ -21,9 +23,18 @@ const CategoriesPage: React.FunctionComponent<ICategoriesPageProps> = (props) =>
 	return (
 		<>
 			<PageWrapper>
-				<PageHeader pageTitle='Categories'>
-					{data && data?.length > 0 && <CounterLabel count={data?.length ?? 0} />}
+				<PageHeader
+					pageTitle='Categories'
+					subtitle={data && data?.length > 0 && <CounterLabel count={data?.length ?? 0} />}
+				>
+					<Flex>
+						<Button>Add category</Button>
+						<Button>Add group</Button>
+					</Flex>
 				</PageHeader>
+				<Title level={5} style={{ marginBottom: 12, opacity: '60%' }}>
+					Food
+				</Title>
 				<Space>
 					<Row gutter={[16, 16]}>
 						{data && data.length > 0 && data.map((item: ICategory) => (

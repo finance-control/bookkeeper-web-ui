@@ -24,13 +24,28 @@ const BalanceBlockItem: React.FC<IBalanceBlockItemProps> = (props) => {
   const { token } = useToken();
   return (
     <>
-      <Card css={currencyWidgetStyle(token.paddingXS)}>
+      <Card css={currencyWidgetStyle(token.paddingSM)}>
         <Flex vertical>
-          <Title level={3} style={{ marginBottom: 4 }}>
-            10000000
+          <Title
+            level={5}
+            css={css`
+              font-size: 12px !important;
+              opacity: 60%;
+              margin-bottom: 4px;
+            `}
+            ellipsis
+          >
+            Main Account
+          </Title>
+          <Title
+            level={3}
+            style={{ marginBottom: 24 }}
+            ellipsis
+          >
+            1000000
           </Title>
           <Flex justify='space-between' align='center'>
-            <Text>
+            <Text ellipsis>
               US Dollars
             </Text>
             <Tag css={incrementStyle} color="green">+5.1%</Tag>

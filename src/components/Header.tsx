@@ -5,7 +5,6 @@ import { Layout, Drawer, Grid, Flex, Button, Divider, Space } from 'antd';
 import { Twirl as BurgerIcon } from 'hamburger-react'
 import { IoClose } from "react-icons/io5";
 import LogoNav from 'src/components/LogoNav';
-import { changeColorMode } from 'src/store/reducers/CommonSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
 import DateWidget from 'src/components/widgets/DateWidget';
 import GreetingWidget from 'src/components/widgets/GreetingWidget';
