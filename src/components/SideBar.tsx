@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
-import { Menu, Modal } from 'antd'
+import { Divider, Menu, Modal } from 'antd'
 import { css } from '@emotion/react'
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { userLogout } from 'src/store/reducers/UserSlice'
 import { PathRoutes } from 'src/data/constants';
-import { changeColorMode } from 'src/store/reducers/CommonSlice';
+import { changeColorMode } from 'src/store/reducers/RootSlice';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -38,7 +38,7 @@ const getItems = (isDarkMode: boolean = false): MenuProps['items'] => {
   return [
     getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
     getItem('Add transaction', 'sub1', <MdOutlineAddCircleOutline />, [
-      getItem('Transfer', PathRoutes.Categories),
+      // getItem('Transfer', PathRoutes.Categories),
       getItem('Spending', PathRoutes.AddSpending),
     ]),
     getItem('History', PathRoutes.History, <IoMdList />),
@@ -75,6 +75,7 @@ const menuBarStyle = css`
 const logoWrapperStyle = css`
   height: 64px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `
@@ -87,7 +88,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
   const [openModal, setOpenModal] = useState(false);
-  const { isDarkMode } = useAppSelector(state => state.commonReducer)
+  const { isDarkMode } = useAppSelector(state => state.rootSliceReducer)
 
   const handleOnClick: MenuProps['onClick'] = (e) => {
     const key = e.key
@@ -126,6 +127,8 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
       <div css={logoWrapperStyle}>
         <LogoNav isLogoMinified={isCollapsed} />
       </div>
+
+      <Divider />
 
       <Menu
         onClick={handleOnClick}

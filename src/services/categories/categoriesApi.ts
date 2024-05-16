@@ -1,6 +1,6 @@
 import { ICategory } from 'src/models/models'
-import {api} from 'src/services/api'
-import {TAG_TYPES, CATEGORIES_URL, Methods} from 'src/data/constants'
+import { api } from 'src/services/api'
+import { TAG_TYPES, CATEGORIES_URL, Methods } from 'src/data/constants'
 
 export const categoriesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -29,4 +29,4 @@ export const categoriesApi = api.injectEndpoints({
 	}),
 })
 
-export const {useGetCategoriesQuery, useAddCategoryMutation, useRemoveCategoryMutation} = categoriesApi
+export const { useGetCategoriesQuery, useAddCategoryMutation, useRemoveCategoryMutation } = categoriesApi

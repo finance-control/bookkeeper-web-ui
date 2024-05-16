@@ -1,10 +1,10 @@
-import {createSlice} from "@reduxjs/toolkit"
-import { IUser } from "../../models/models"
+import { createSlice } from "@reduxjs/toolkit"
+import { IUser } from "src/models/models"
 import Cookies from "js-cookie"
 
 const userData = Cookies.get('userData')
-  ? Cookies.get('userData')
-  : undefined
+	? Cookies.get('userData')
+	: undefined
 
 interface UserState {
 	userInfo: IUser;
@@ -28,12 +28,12 @@ const initialState: UserState = {
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers:{
+	reducers: {
 		userLogout: (state) => {
 			state.userInfo = initialState.userInfo
 		}
 	}
 })
 
-export const {userLogout} = userSlice.actions 
+export const { userLogout } = userSlice.actions
 export default userSlice.reducer

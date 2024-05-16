@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { css } from "@emotion/react"
 import UserLabel from './labels/UserLabel';
-import { Layout, Drawer, Grid, Flex, Button, Divider, Space } from 'antd';
+import { Layout, Drawer, Grid, Flex, Button, Space } from 'antd';
 import { Twirl as BurgerIcon } from 'hamburger-react'
 import { IoClose } from "react-icons/io5";
 import LogoNav from 'src/components/LogoNav';
@@ -51,18 +51,12 @@ const Header: React.FunctionComponent<IHeaderProps> = ({ className }) => {
 				{!isXsBreakpoint &&
 					<Flex vertical>
 						<GreetingWidget />
-						<Divider style={{ marginTop: 0, marginBottom: 6 }} />
 						<DateWidget />
 					</Flex>
 				}
 
 				{!isXsBreakpoint &&
-					<Space>
-						<Button type='primary'>
-							Add transaction
-						</Button>
-						<UserLabel />
-					</Space>}
+					<UserLabel />}
 
 				{isXsBreakpoint && <LogoNav />}
 				{isXsBreakpoint && <BurgerIcon

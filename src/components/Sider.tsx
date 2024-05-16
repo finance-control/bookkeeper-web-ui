@@ -36,7 +36,7 @@ interface ISiderProps {
 const Sider: React.FunctionComponent<ISiderProps> = (props) => {
 	const [collapsed, setCollapsed] = useState(false)
 	const [collapsedWidth, setCollapsedWidth] = useState(80)
-	const { isDarkMode } = useAppSelector(state => state.commonReducer)
+	const { isDarkMode } = useAppSelector(state => state.rootSliceReducer)
 
 	return (
 		<>

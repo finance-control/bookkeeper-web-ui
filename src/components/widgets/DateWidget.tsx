@@ -47,23 +47,24 @@ const DateWidget: React.FC<IDateWidgetProps> = (props) => {
         : <Flex>
           <h6 css={css`
             font-size: 16px;
-            margin-right: 4px;
-            `}>
-            {`${date.hours}:${date.minutes}`}
-          </h6>
-          <h6 css={css`
-            font-size: 12px;
-            font-weight: 500;
             margin-right: 2px;
           `}>
             {date.dayMonth}
           </h6>
           <h6 css={css`
-            font-size: 12px;
-            font-weight: 500; 
+            font-size: 16px;
+            
+            margin-right: 4px;
             `}>
             {date.month}
           </h6>
+          <h6 css={css`
+            font-size: 12px;
+            font-weight: 500; 
+            `}>
+            {`${date.hours}:${date.minutes}`}
+          </h6>
+
         </Flex>}
     </>
   )

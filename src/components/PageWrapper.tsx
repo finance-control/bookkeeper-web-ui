@@ -20,7 +20,7 @@ interface IPageWrapperProps {
 
 const PageWrapper: React.FunctionComponent<IPageWrapperProps> = ({ children }) => {
 	const { xs: isXsBreakpoint } = useBreakpoint();
-	const { isDarkMode } = useAppSelector(state => state.commonReducer)
+	const { isDarkMode } = useAppSelector(state => state.rootSliceReducer)
 	return (
 		<>
 			<Layout>

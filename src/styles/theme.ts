@@ -4,7 +4,9 @@ const { defaultAlgorithm, darkAlgorithm } = theme;
 
 export const mainColor = '#5065F6'
 export const textColor = '#181818'
-export const mainDarkBg = '#282828'
+export const mainDarkBg = '#202022'
+export const layoutDarkBg = '#18181A'
+export const layoutLightBg = '#f5f5f5'
 
 export const getThemeData = (isDarkMode: boolean = false) => ({
   token: {
@@ -19,13 +21,15 @@ export const getThemeData = (isDarkMode: boolean = false) => ({
     },
     Menu: {
       itemColor: '#626263',
-      darkItemBg: mainDarkBg,
+      darkItemBg: '#202022',
       darkSubMenuItemBg: '#202020',
       darkPopupBg: mainDarkBg
     },
     Layout: {
       headerPadding: '0 16px',
-      headerBg: isDarkMode ? mainDarkBg : 'white',
+      headerBg: 'transparent',
+      bodyBg: isDarkMode ? layoutDarkBg : layoutLightBg,
+      footerBg: isDarkMode ? layoutDarkBg : layoutLightBg,
       siderBg: mainDarkBg,
       algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm
     },

@@ -11,7 +11,7 @@ export const COOKIES_EXPIRED_TIME: number = 3; // 3 days expired
 
 export enum Methods {
   Get = 'GET',
-  Post = 'Post',
+  Post = 'POST',
   Delete = 'DELETE'
 }
 

@@ -2,16 +2,15 @@
 @import url('./reset.css');
 
 :root {
-	--main-color: #e02323;
-	--main-color-hover: #d42020;
-	--main-color-active: #c01818;
-	--border-bottom-inactive: #d3d3d3;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-variant-ligatures: common-ligatures;
 }
 
 body {
 	font-family: 'Roboto', sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	color: #181818;
 }
 

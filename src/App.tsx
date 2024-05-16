@@ -16,7 +16,7 @@ import { getThemeData } from 'src/styles/theme';
 import { useAppSelector } from 'src/hooks/redux';
 
 function App() {
-  const { isDarkMode } = useAppSelector(state => state.commonReducer)
+  const { isDarkMode } = useAppSelector(state => state.rootSliceReducer)
 
   return (
     <>

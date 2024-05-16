@@ -35,8 +35,10 @@ const GreetingWidget: React.FunctionComponent<IGreetingWidgetProps> = (props) =>
         <Title css={css`
 							font-size: 12px !important;
 							font-weight: 500;
-							margin-bottom: 6px !important;
-						`}>{`Good ${timePeriod}, ${data?.name}`}</Title>}
+							margin-bottom: 4px !important;
+						`}>
+          {`Good ${timePeriod}, ${data?.name}`}
+        </Title>}
     </>
   )
 };
