@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Modal, Form, Input, Alert } from 'antd';
+import { Modal, Form, Input, Alert, Button } from 'antd';
 import { css } from '@emotion/react';
 import { useAppSelector, useAppDispatch } from 'src/hooks/redux';
 import { changeShowModal } from 'src/store/reducers/RootSlice';
@@ -9,7 +8,7 @@ interface IAddCategoryModalProps {
 }
 
 const AddCategoryModal: React.FC<IAddCategoryModalProps> = (props) => {
-  const [addCategory, { isSuccess, isLoading, isError, reset }] = useAddCategoryMutation()
+  const [addCategory, { data, isSuccess, isLoading, isError, reset }] = useAddCategoryMutation()
   const dispatch = useAppDispatch()
   const { isModalOpen, modalType } = useAppSelector(state => state.rootSliceReducer.modal)
   const [form] = Form.useForm();
@@ -20,7 +19,7 @@ const AddCategoryModal: React.FC<IAddCategoryModalProps> = (props) => {
       description: ''
     })
     form.resetFields()
-    reset()
+    reset
   }
 
   const handleCancel = () => dispatch(changeShowModal({
@@ -41,31 +40,37 @@ const AddCategoryModal: React.FC<IAddCategoryModalProps> = (props) => {
           padding-bottom: 32px;
         `}
       >
-        <Form
-          form={form}
-          name="form_add_category"
-          layout="vertical"
-        >
-          <Form.Item
-            label="Title"
-            name="title"
-            rules={[
-              {
-                required: true,
-                message: 'Please type category title!'
-              }]}>
-            <Input
-              placeholder='Salary, education, food, video games, etc...'
-              maxLength={20}
-            />
-          </Form.Item>
-        </Form>
+        {!data && (!isSuccess || !isError) &&
+          <Form
+            form={form}
+            name="form_add_category"
+            layout="vertical"
+          >
+            <Form.Item
+              label="Title"
+              name="title"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please type category title!'
+                }]}>
+              <Input
+                placeholder='Salary, education, food, video games, etc...'
+                maxLength={20}
+              />
+            </Form.Item>
+          </Form>}
         {
           isSuccess &&
           <Alert
             message="Catergory has been added"
             type="success"
             showIcon
+            action={
+              <Button type='text'>
+                Add one more
+              </Button>
+            }
           />
         }
         {

@@ -4,7 +4,6 @@ import { css } from '@emotion/react'
 import { useNavigate } from "react-router-dom";
 import { Flex, Button, Typography } from 'antd';
 import UserAvatar from 'src/components/shared/UserAvatar';
-import { IoIosArrowDown } from "react-icons/io";
 
 const { Title, Text } = Typography
 
@@ -63,7 +62,6 @@ const UserLabel: React.FunctionComponent<IUserLabelProps> = (props) => {
 							</Flex>
 							<Text ellipsis css={emailStyle}>test_name_11111surname@yandex.ru</Text>
 						</Flex>
-						<IoIosArrowDown />
 					</Flex>}
 				{isError && <p>No User Data</p>}
 			</Button>

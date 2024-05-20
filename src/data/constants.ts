@@ -29,6 +29,7 @@ export enum PathRoutes {
   Categories = '/categories',
   Settings = '/settings',
   AddCategory = '/add_category',
+  AddEarning = '/add_earning',
   AddSpending = '/add_spending',
   AddTransfer = '/add_transfer',
   Profile = '/profile',

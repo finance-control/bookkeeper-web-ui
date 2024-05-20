@@ -6,10 +6,9 @@ import RegisterPage from 'src/pages/RegisterPage';
 import PrivateRoute from 'src/routes/PrivateRoute'
 import ProfilePage from 'src/pages/ProfilePage'
 import CategoriesPage from 'src/pages/CategoriesPage'
-import AddCategoryPage from 'src/pages/AddCategoryPage';
-import AddSpendingPage from 'src/pages/AddSpendingPage';
 import ReportsPage from 'src/pages/ReportsPage';
 import HistoryPage from 'src/pages/HistoryPage';
+import SettingsPage from 'src/pages/SettingsPage';
 import { PathRoutes } from './data/constants';
 import { ConfigProvider } from 'antd';
 import { getThemeData } from 'src/styles/theme';
@@ -35,9 +34,8 @@ function App() {
             <Route path={PathRoutes.Profile} element={<ProfilePage />} />
             <Route path={PathRoutes.History} element={<HistoryPage />} />
             <Route path={PathRoutes.Categories} element={<CategoriesPage />} />
-            <Route path={PathRoutes.AddCategory} element={<AddCategoryPage />} />
-            <Route path={PathRoutes.AddSpending} element={<AddSpendingPage />} />
             <Route path={PathRoutes.Reports} element={<ReportsPage />} />
+            <Route path={PathRoutes.Settings} element={<SettingsPage />} />
           </Route>
         </Routes>
       </ConfigProvider>

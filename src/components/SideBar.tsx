@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux';
-import { Divider, Menu, Modal } from 'antd'
+import { Divider, Menu, Modal, Flex, Switch } from 'antd'
 import { css } from '@emotion/react'
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
@@ -14,7 +14,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { userLogout } from 'src/store/reducers/UserSlice'
 import { PathRoutes } from 'src/data/constants';
-import { changeColorMode } from 'src/store/reducers/RootSlice';
+import { changeShowModal } from 'src/store/reducers/RootSlice';
+import AddSpendingModal from './modals/AddSpendingModal';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -34,27 +35,22 @@ function getItem(
   } as MenuItem;
 }
 
-const getItems = (isDarkMode: boolean = false): MenuProps['items'] => {
-  return [
-    getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
-    getItem('Add transaction', 'sub1', <MdOutlineAddCircleOutline />, [
-      // getItem('Transfer', PathRoutes.Categories),
-      getItem('Spending', PathRoutes.AddSpending),
-    ]),
-    getItem('History', PathRoutes.History, <IoMdList />),
-    getItem('Categories', PathRoutes.Categories, <BiCategoryAlt />),
-    getItem('Accounts', PathRoutes.Accounts, <LuWalletCards />),
-    getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
-    getItem('Logout', PathRoutes.Logout, <MdLogout />),
-    {
-      type: 'divider'
-    },
-    getItem('Settings', PathRoutes.Settings, <LuSettings />),
-    getItem(isDarkMode ? 'Set light mode' : 'Set dark mode',
-      PathRoutes.ChangeColorMode,
-      isDarkMode ? <LuSun /> : <LuMoon />),
-  ];
-}
+const items: MenuProps['items'] = [
+  getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
+  // getItem('Add operation', 'sub1', <MdOutlineAddCircleOutline />, [
+  //   getItem('Earning', PathRoutes.AddEarning),
+  //   getItem('Spending', PathRoutes.AddSpending),
+  // ]),
+  getItem('History', PathRoutes.History, <IoMdList />),
+  getItem('Categories', PathRoutes.Categories, <BiCategoryAlt />),
+  getItem('Accounts', PathRoutes.Accounts, <LuWalletCards />),
+  getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
+  getItem('Settings', PathRoutes.Settings, <LuSettings />),
+  {
+    type: 'divider'
+  },
+  getItem('Logout', PathRoutes.Logout, <MdLogout />),
+]
 
 const menuBarStyle = css`
   display: flex;
@@ -97,8 +93,11 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
         showModal()
         break;
 
-      case PathRoutes.ChangeColorMode:
-        dispatch(changeColorMode())
+      case PathRoutes.AddSpending:
+        dispatch(changeShowModal({
+          isModalOpen: true,
+          modalType: 'add_spending'
+        }))
         break;
 
       default:
@@ -118,9 +117,7 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
     setOpenModal(false);
   };
 
-  const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
-    setOpenModal(false);
-  };
+  const handleCancel = () => setOpenModal(false)
 
   return (
     <div>
@@ -128,14 +125,16 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
         <LogoNav isLogoMinified={isCollapsed} />
       </div>
 
-      <Divider />
+      <Divider css={css`
+        margin-top: 0px !important;
+      `} />
 
       <Menu
         onClick={handleOnClick}
         mode='inline'
         theme={isDarkMode ? 'dark' : 'light'}
         defaultSelectedKeys={['1']}
-        items={getItems(isDarkMode)}
+        items={items}
         css={menuBarStyle}
       />
 
@@ -146,6 +145,8 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
         onCancel={handleCancel}>
         <p>Your account will remain in our database and you can log in again</p>
       </Modal>
+
+      <AddSpendingModal />
     </div>
   )
 };

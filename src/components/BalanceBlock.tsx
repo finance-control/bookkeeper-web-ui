@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import { Typography, Space, Flex, Select } from 'antd';
-import BalanceBlockItem from './BalanceBlockItem';
+import BalanceBlockCard from 'src/components/BalanceBlockCard';
 
 const { Title } = Typography
 
 const widgetsWrapperStyle = css`
-  overflow: scroll;
+  /* padding: 12px 12px; */
+  overflow-y: auto;
   width: 100%;
   &::-webkit-scrollbar {
     display: none;
@@ -14,7 +15,7 @@ const widgetsWrapperStyle = css`
   .ant-space-item{
     width: 200px;
     flex-grow: 1;
-    flex-shrink: 0
+    flex-shrink: 0;
   }
 `
 
@@ -24,13 +25,13 @@ interface IBalanceBlockProps {
 const BalanceBlock: React.FC<IBalanceBlockProps> = (props) => {
   return (
     <>
-      <Title level={4}>Balance</Title>
+      <Title level={4} style={{ marginBottom: 0 }}>Balance</Title>
       <Space css={widgetsWrapperStyle} size={16}>
-        <BalanceBlockItem />
-        <BalanceBlockItem />
-        <BalanceBlockItem />
-        <BalanceBlockItem />
-        <BalanceBlockItem />
+        <BalanceBlockCard />
+        <BalanceBlockCard />
+        <BalanceBlockCard />
+        <BalanceBlockCard />
+        <BalanceBlockCard />
       </Space>
     </>
   )

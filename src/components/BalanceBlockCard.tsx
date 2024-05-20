@@ -5,7 +5,7 @@ import { Typography, Flex, theme, Card, Tag } from 'antd';
 const { Title, Text } = Typography
 const { useToken } = theme;
 
-const currencyWidgetStyle = (
+const currencyCardStyle = (
   padding: number | undefined
 ) => css`
   .ant-card-body{
@@ -24,7 +24,10 @@ const BalanceBlockItem: React.FC<IBalanceBlockItemProps> = (props) => {
   const { token } = useToken();
   return (
     <>
-      <Card css={currencyWidgetStyle(token.paddingSM)}>
+      <Card
+        css={currencyCardStyle(token.paddingSM)}
+      // hoverable
+      >
         <Flex vertical>
           <Title
             level={5}
