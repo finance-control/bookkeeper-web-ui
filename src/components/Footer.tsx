@@ -7,17 +7,20 @@ const { Footer: AntFooter } = Layout;
 
 const footerStyle = css`
   display: flex;
-  justify-content: center;
   align-items: center;
+  padding: 0 12px !important;
 `
 
 interface IFooterProps {
+  className?: string;
 }
 
-const Footer: React.FunctionComponent<IFooterProps> = (props) => {
+const Footer: React.FunctionComponent<IFooterProps> = ({ className }) => {
   return (
-    <AntFooter css={footerStyle}>
-      <Text type="secondary">2024 Finance Control</Text>
+    <AntFooter css={footerStyle} className={className}>
+      <Text type="secondary" css={css`
+        font-size: 12px;
+      `}>2024 Finance Control</Text>
     </AntFooter>
   )
 };

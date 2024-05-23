@@ -44,16 +44,15 @@ const DateWidget: React.FC<IDateWidgetProps> = (props) => {
     <>
       {loading ?
         <SpinLoader />
-        : <Flex>
+        : <Flex align='center'>
           <h6 css={css`
-            font-size: 16px;
+            font-size: 14px;
             margin-right: 2px;
           `}>
             {date.dayMonth}
           </h6>
           <h6 css={css`
-            font-size: 16px;
-            
+            font-size: 14px;
             margin-right: 4px;
             `}>
             {date.month}

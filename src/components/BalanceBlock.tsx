@@ -29,9 +29,9 @@ const BalanceBlock: React.FC<IBalanceBlockProps> = (props) => {
       <Space css={widgetsWrapperStyle} size={16}>
         <BalanceBlockCard />
         <BalanceBlockCard />
+        {/* <BalanceBlockCard />
         <BalanceBlockCard />
-        <BalanceBlockCard />
-        <BalanceBlockCard />
+        <BalanceBlockCard /> */}
       </Space>
     </>
   )

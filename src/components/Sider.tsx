@@ -7,27 +7,21 @@ import { css } from "@emotion/react"
 const { Sider: AntSider } = Layout
 
 const siderStyle = css`
-	position: fixed !important;
-	height: 100vh;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 1000;
-
 	.ant-menu{
 		border-inline-end: none !important;
 	}
 `
 
 interface ISiderProps {
+	className?: string;
 }
 
-const Sider: React.FC<ISiderProps> = (props) => {
+const Sider: React.FC<ISiderProps> = ({ className }) => {
 	const [collapsed, setCollapsed] = useState(false)
 	const { isDarkMode } = useAppSelector(state => state.rootSliceReducer)
 
 	return (
-		<Flex css={siderStyle}>
+		<Flex css={siderStyle} className={className}>
 			<AntSider
 				theme={isDarkMode ? 'dark' : "light"}
 				collapsible
@@ -36,13 +30,10 @@ const Sider: React.FC<ISiderProps> = (props) => {
 				breakpoint='sm'
 				collapsedWidth={0}
 				onCollapse={value => setCollapsed(value)}
+				width={170}
 			>
 				<SideBar isCollapsed={collapsed} />
 			</AntSider>
-			<Divider type='vertical' css={css`
-				height: 100% !important;
-				margin: 0px !important;
-			`} />
 		</Flex>
 	)
 };

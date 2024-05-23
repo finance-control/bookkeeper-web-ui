@@ -8,10 +8,8 @@ const { Content } = Layout
 const { useBreakpoint } = Grid
 
 const contentStyle = (isXsBreakpoint: boolean | undefined, isDarkMode: boolean | undefined) => css`
-	margin: ${isXsBreakpoint ? '0px' : '16px'};
-	padding: 16px;
-	background-color: ${isDarkMode ? mainDarkBg : 'white'};
-	border-radius: ${isXsBreakpoint ? '0' : '8px'};
+	margin: ${isXsBreakpoint ? '0 px 0px' : '16px 0px'};
+	/* padding: 16px; */
 `
 
 interface IPageWrapperProps {

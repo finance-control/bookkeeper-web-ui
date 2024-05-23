@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { css } from '@emotion/react';
 import PageWrapper from 'src/components/PageWrapper'
-import PageHeader from 'src/components/PageHeader';
-import { Tabs, Skeleton, Select, DatePicker, Flex } from 'antd';
+import BlockContent from 'src/components/BlockContent'
+import { Tabs, Skeleton, Select, DatePicker, Flex, Typography, Space } from 'antd';
 import type { TabsProps } from 'antd';
 import { lazy, Suspense } from 'react';
-
 const SpendingsTableView = lazy(() => import('src/components/views/SpendingsTableView'));
 
 const { RangePicker } = DatePicker;
+const { Title } = Typography
 
 const getItems = (dates: string[] = ['']): TabsProps['items'] => [
   {
@@ -67,14 +67,11 @@ const selectPeriodOptions: { value: string, label: string }[] = [
   }
 ]
 
-type Align = 'Table' | 'Chart' | 'Bar';
-
 interface IHistoryPageProps {
 }
 
 const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
   const [selectedDates, setSelectedDates] = useState<string[]>([''])
-  const [alignValue, setAlignValue] = useState<Align>('Table');
 
   const onChange = (key: string) => {
     console.log(key);
@@ -111,35 +108,38 @@ const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
   return (
     <>
       <PageWrapper>
-        <PageHeader pageTitle='History'>
-          <Flex align='center'>
-            <Select
-              defaultValue="3439489384"
-              style={{ width: 300, marginRight: 8 }}
-              options={[
-                { value: '34394893343', label: 'Default account: 17284376' },
-                { value: '3439489384', label: 'Main account: 1728437643' },
-                { value: '84594851', label: 'Secondary account: 4954985498' },
-                { value: '8459485', label: 'All accounts' },
-              ]}
-            />
-            <RangePicker
-              onChange={handleOnSelectedDatesChange}
-              renderExtraFooter={() =>
-                <Select
-                  onChange={handleOnSelectedPeriodChange}
-                  defaultValue={SelectPeriods.LastDay}
-                  css={css`
+        <BlockContent>
+          <Flex align='center' justify='space-between'>
+            <Title level={4}>History</Title>
+            <Space>
+              <Select
+                defaultValue="3439489384"
+                style={{ width: 200, marginRight: 8 }}
+                options={[
+                  { value: '34394893343', label: 'Default account: 17284376' },
+                  { value: '3439489384', label: 'Main account: 1728437643' },
+                  { value: '84594851', label: 'Secondary account: 4954985498' },
+                  { value: '8459485', label: 'All accounts' },
+                ]}
+              />
+              <RangePicker
+                onChange={handleOnSelectedDatesChange}
+                renderExtraFooter={() =>
+                  <Select
+                    onChange={handleOnSelectedPeriodChange}
+                    defaultValue={SelectPeriods.LastDay}
+                    css={css`
                     width: 100%;
                     margin-top: 8px;
                     margin-bottom: 8px;
                   `}
-                  options={selectPeriodOptions}
-                />}
-            />
+                    options={selectPeriodOptions}
+                  />}
+              />
+            </Space>
           </Flex>
-        </PageHeader>
-        <Tabs defaultActiveKey="1" items={getItems(selectedDates)} onChange={onChange} />
+          <Tabs defaultActiveKey="1" items={getItems(selectedDates)} onChange={onChange} />
+        </BlockContent>
       </PageWrapper>
     </>
   )

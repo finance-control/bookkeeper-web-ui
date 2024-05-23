@@ -8,7 +8,8 @@ import UserAvatar from 'src/components/shared/UserAvatar';
 const { Title, Text } = Typography
 
 const buttonStyle = css`
-	height: auto !important;
+	height: 50px !important;
+	border-radius: 0;
 `
 
 const nameStyle = css`

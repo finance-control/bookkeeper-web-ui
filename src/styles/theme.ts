@@ -23,14 +23,19 @@ export const getThemeData = (isDarkMode: boolean = false) => ({
       itemColor: '#626263',
       darkItemBg: '#202022',
       darkSubMenuItemBg: '#202020',
-      darkPopupBg: mainDarkBg
+      darkPopupBg: mainDarkBg,
+      iconSize: 16,
+      darkItemSelectedBg: 'transparent',
+      itemSelectedBg: 'transparent',
+      itemHeight: 32
     },
     Layout: {
       headerPadding: '0 16px',
-      headerBg: 'transparent',
+      headerBg: isDarkMode ? mainDarkBg : 'white',
       bodyBg: isDarkMode ? layoutDarkBg : layoutLightBg,
       footerBg: isDarkMode ? layoutDarkBg : layoutLightBg,
-      siderBg: mainDarkBg,
+      siderBg: 'transparent',
+      lightSiderBg: 'transparent',
       algorithm: isDarkMode ? darkAlgorithm : defaultAlgorithm
     },
     Typography: {

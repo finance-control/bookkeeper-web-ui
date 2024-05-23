@@ -46,34 +46,27 @@ const items: MenuProps['items'] = [
   getItem('Accounts', PathRoutes.Accounts, <LuWalletCards />),
   getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
   getItem('Settings', PathRoutes.Settings, <LuSettings />),
-  {
-    type: 'divider'
-  },
   getItem('Logout', PathRoutes.Logout, <MdLogout />),
 ]
 
 const menuBarStyle = css`
   display: flex;
   flex-direction: column;
-  gap: 10px;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  padding: 0 4px !important;
+  background: transparent !important;
+  gap: 4px;
 
   .ant-menu-item-divider{
     border-color: rgba(255, 255,255, 0.1) !important;
   }
 
-  .ant-menu-item-icon{
-    font-size: 18px !important;
+  .ant-menu-item{
+    margin: 0 !important;
+    padding: 0 12px !important;
   }
-`
-
-const logoWrapperStyle = css`
-  height: 64px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `
 
 interface ISideBarProps {
@@ -121,14 +114,6 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
 
   return (
     <div>
-      <div css={logoWrapperStyle}>
-        <LogoNav isLogoMinified={isCollapsed} />
-      </div>
-
-      <Divider css={css`
-        margin-top: 0px !important;
-      `} />
-
       <Menu
         onClick={handleOnClick}
         mode='inline'

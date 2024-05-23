@@ -1,9 +1,9 @@
 import PageWrapper from 'src/components/PageWrapper'
-import PageHeader from 'src/components/PageHeader';
 import { useGetUserQuery } from 'src/services/user/userApi';
 import UserAvatar from 'src/components/shared/UserAvatar';
 import { Flex, Space, Typography } from 'antd';
 import { css } from '@emotion/react';
+import BlockContent from 'src/components/BlockContent';
 
 const { Title } = Typography
 
@@ -25,20 +25,22 @@ export default function ProfilePage(props: IProfilePageProps) {
 	return (
 		<div>
 			<PageWrapper>
-				<PageHeader pageTitle='Your Profile' />
-				<Space>
-					<Flex align='center'>
-						<UserAvatar size={128} css={css`margin-right: 16px;`} />
-						<div>
-							<Title level={3} css={nameStyle}>
-								{data?.name}
-							</Title>
-							<Title level={5} css={surnameStyle}>
-								{data?.surname}
-							</Title>
-						</div>
-					</Flex>
-				</Space>
+				<BlockContent>
+					<Space>
+						<Flex align='center'>
+							<UserAvatar size={128} css={css`margin-right: 16px;`} />
+							<div>
+								<Title level={3} css={nameStyle}>
+									{data?.name}
+								</Title>
+								<Title level={5} css={surnameStyle}>
+									{data?.surname}
+								</Title>
+							</div>
+						</Flex>
+					</Space>
+				</BlockContent>
+
 			</PageWrapper>
 		</div>
 	);

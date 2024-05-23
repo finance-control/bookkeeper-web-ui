@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
-import { Typography, Flex, theme, Card, Tag } from 'antd';
+import { Typography, Flex, theme, Card, Tag, Space } from 'antd';
 
 const { Title, Text } = Typography
 const { useToken } = theme;
@@ -14,7 +14,7 @@ const currencyCardStyle = (
 `
 
 const incrementStyle = css`
-  margin-inline-end: 0 !important;
+  margin-inline-end: 8px !important;
 `
 
 interface IBalanceBlockItemProps {
@@ -48,10 +48,17 @@ const BalanceBlockItem: React.FC<IBalanceBlockItemProps> = (props) => {
             1000000
           </Title>
           <Flex justify='space-between' align='center'>
+            <Flex align='center'>
+              <Tag css={incrementStyle} color="green">+5.1%</Tag>
+              <Text css={css`
+                opacity: 40%;
+              `}>
+                since last month
+              </Text>
+            </Flex>
             <Text ellipsis>
               US Dollars
             </Text>
-            <Tag css={incrementStyle} color="green">+5.1%</Tag>
           </Flex>
         </Flex>
       </Card>
