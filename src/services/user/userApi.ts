@@ -1,4 +1,4 @@
-import {api} from 'src/services/api'
+import { api } from 'src/shared/api'
 import { CURRENT_USER_URL, Methods } from 'src/data/constants'
 
 export const userApi = api.injectEndpoints({
@@ -12,4 +12,4 @@ export const userApi = api.injectEndpoints({
 	}),
 })
 
-export const {useGetUserQuery} = userApi
+export const { useGetUserQuery } = userApi

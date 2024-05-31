@@ -1,6 +1,6 @@
 import { ICurrency } from 'src/models/models'
-import {api} from 'src/services/api'
-import {TAG_TYPES, CURRENCIES_URL, Methods} from 'src/data/constants'
+import { api } from 'src/shared/api'
+import { TAG_TYPES, CURRENCIES_URL, Methods } from 'src/data/constants'
 
 export const currenciesApi = api.injectEndpoints({
 	endpoints: (builder) => ({
@@ -14,4 +14,4 @@ export const currenciesApi = api.injectEndpoints({
 	}),
 })
 
-export const {useGetCurrenciesQuery} = currenciesApi
+export const { useGetCurrenciesQuery } = currenciesApi

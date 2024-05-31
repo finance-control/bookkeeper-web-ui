@@ -1,6 +1,6 @@
 import { ISpendingRequest, ISpendingResponse } from 'src/models/models'
-import {api} from 'src/services/api'
-import {TAG_TYPES, SPENDINGS_URL, Methods} from 'src/data/constants'
+import { api } from 'src/shared/api'
+import { TAG_TYPES, SPENDINGS_URL, Methods } from 'src/data/constants'
 
 interface IParam {
 	start_date: string;
@@ -12,24 +12,25 @@ export const spendingsApi = api.injectEndpoints({
 		getSpendings: builder.query<ISpendingResponse[], IParam>({
 			query: (arg) => {
 				const { start_date, end_date } = arg;
-				return{
-						url: SPENDINGS_URL,
-						method: Methods.Get,
-						params: { start_date, end_date}
+				return {
+					url: SPENDINGS_URL,
+					method: Methods.Get,
+					params: { start_date, end_date }
 				}
 			},
 			transformResponse: (response: ISpendingResponse[]): any => {
-				if (response && response.length){
+				if (response && response.length) {
 					return response.map(spending => ({
 						key: spending.id,
 						date: spending.date,
 						description: spending.description,
 						amount: {
 							amount: spending.money.money.amount,
-							currency: spending.money.money.currencyCode },
+							currency: spending.money.money.currencyCode
+						},
 						category: spending.categoryId.toString(),
 					}))
-				}else{
+				} else {
 					return []
 				}
 			},
@@ -53,4 +54,4 @@ export const spendingsApi = api.injectEndpoints({
 	}),
 })
 
-export const {useLazyGetSpendingsQuery, useAddSpendingMutation, useRemoveSpendingMutation} = spendingsApi
+export const { useLazyGetSpendingsQuery, useAddSpendingMutation, useRemoveSpendingMutation } = spendingsApi
