@@ -21,8 +21,15 @@ export const CategoriesPage: React.FC<ICategoriesPageProps> = (props) => {
 		<>
 			<PageWrapper>
 				<BlockContent>
-					<Flex align="center" justify="space-between">
-						<Flex align="center">
+					<Flex
+						align="center"
+						justify="space-between"
+						wrap
+						css={css`
+							margin-bottom: 12px;
+						`}
+					>
+						<Flex align="center" wrap>
 							<Title level={4} css={css`
 								margin-right: 8px;
 							`}>

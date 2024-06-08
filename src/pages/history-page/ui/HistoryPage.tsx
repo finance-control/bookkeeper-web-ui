@@ -14,13 +14,13 @@ const getItems = (dates: string[] = ['']): TabsProps['items'] => [
   {
     key: '1',
     label: 'All transactions',
-    children: 'Content of Tab Pane 1',
+    children: 'Still in dev ;(',
   },
-  {
-    key: '2',
-    label: 'Transfers',
-    children: 'Content of Tab Pane 2',
-  },
+  // {
+  //   key: '2',
+  //   label: 'Transfers',
+  //   children: 'Content of Tab Pane 2',
+  // },
   {
     key: '3',
     label: 'Spendings',
@@ -74,7 +74,7 @@ export const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
   const [selectedDates, setSelectedDates] = useState<string[]>([''])
 
   const onChange = (key: string) => {
-    console.log(key);
+    // console.log(key);
   };
 
   const handleOnSelectedDatesChange = (date: any, dates: string[]) => setSelectedDates(dates)
@@ -112,7 +112,7 @@ export const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
           <Flex align='center' justify='space-between'>
             <Title level={4}>History</Title>
             <Space>
-              <Select
+              {/* <Select
                 defaultValue="3439489384"
                 style={{ width: 200, marginRight: 8 }}
                 options={[
@@ -121,7 +121,7 @@ export const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
                   { value: '84594851', label: 'Secondary account: 4954985498' },
                   { value: '8459485', label: 'All accounts' },
                 ]}
-              />
+              /> */}
               <RangePicker
                 onChange={handleOnSelectedDatesChange}
                 renderExtraFooter={() =>

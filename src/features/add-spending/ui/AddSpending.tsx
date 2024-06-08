@@ -1,7 +1,7 @@
 import { Button } from "antd"
 import { changeShowModal, useAppDispatch } from 'src/app';
 
-export const AddCategory = () => {
+export const AddSpending = () => {
   const dispatch = useAppDispatch()
   return (
     <>
@@ -9,10 +9,10 @@ export const AddCategory = () => {
         onClick={() => dispatch(changeShowModal(
           {
             isModalOpen: true,
-            modalType: 'add_category'
+            modalType: 'add_spending'
           }
         ))}>
-        Add category
+        Add spending
       </Button>
     </>
   )

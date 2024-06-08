@@ -8,6 +8,7 @@ interface IModal {
 interface RootState {
 	isDarkMode: boolean;
 	modal: IModal;
+	isDrawerOpened: boolean;
 }
 
 const initialState: RootState = {
@@ -15,7 +16,8 @@ const initialState: RootState = {
 	modal: {
 		isModalOpen: false,
 		modalType: ''
-	}
+	},
+	isDrawerOpened: false
 }
 
 const rootSlice = createSlice({
@@ -28,9 +30,12 @@ const rootSlice = createSlice({
 		changeShowModal: (state, action: PayloadAction<IModal>) => {
 			state.modal.isModalOpen = action.payload.isModalOpen
 			state.modal.modalType = action.payload.modalType
+		},
+		changeShowDrawer: (state) => {
+			state.isDrawerOpened = !state.isDrawerOpened
 		}
 	}
 })
 
-export const { changeColorMode, changeShowModal } = rootSlice.actions
+export const { changeColorMode, changeShowModal, changeShowDrawer } = rootSlice.actions
 export default rootSlice.reducer

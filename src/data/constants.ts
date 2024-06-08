@@ -13,6 +13,5 @@ export enum PathRoutes {
   Logout = '/logout',
   Login = '/login',
   Register = '/register',
-  Reports = '/reports',
-  ChangeColorMode = '/change_color_mode'
+  Reports = '/reports'
 }

@@ -7,13 +7,13 @@ import { MdLogout } from "react-icons/md";
 import { MdOutlineSpaceDashboard, MdOutlineAddCircleOutline } from "react-icons/md";
 import { HiOutlineDocumentReport } from "react-icons/hi";
 import { IoMdList } from "react-icons/io";
-import { LuSun, LuMoon, LuSettings, LuWalletCards } from "react-icons/lu";
+import { LuSettings, LuWalletCards } from "react-icons/lu";
 import type { MenuProps } from 'antd';
 import { LogoNav } from 'src/entities/logo';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { PathRoutes } from 'src/data/constants';
-import { changeShowModal } from 'src/app';
+import { changeShowModal, changeShowDrawer } from 'src/app';
 import { AddSpendingModal } from 'src/features/add-spending-modal';
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -68,14 +68,20 @@ interface ISideBarProps {
   isCollapsed: boolean;
 }
 
-const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
+export const SideBar: React.FC<ISideBarProps> = ({ isCollapsed }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
   const [openModal, setOpenModal] = useState(false);
-  const { isDarkMode } = useAppSelector(state => state.rootSliceReducer)
+  const { isDarkMode, isDrawerOpened } = useAppSelector(state => state.rootSliceReducer)
 
   const handleOnClick: MenuProps['onClick'] = (e) => {
     const key = e.key
+
+    // TODO: Refactor this shit, sidebar should not know about drawer
+    if (isDrawerOpened) {
+      dispatch(changeShowDrawer())
+    }
+
     switch (key) {
       case PathRoutes.Logout:
         showModal()
@@ -129,5 +135,3 @@ const SideBar: React.FunctionComponent<ISideBarProps> = ({ isCollapsed }) => {
     </div>
   )
 };
-
-export default SideBar;

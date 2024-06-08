@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAppSelector } from 'src/app';
 import { Layout, Flex } from 'antd';
-import SideBar from 'src/widgets/ui/SideBar';
+import { SideBar } from 'src/entities/side-bar';
 import { css } from "@emotion/react"
 
 const { Sider: AntSider } = Layout
