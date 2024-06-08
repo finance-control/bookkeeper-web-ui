@@ -1,27 +1,10 @@
-export interface ILoginUserForm {
-	email: string;
-	password: string;
-}
-
-export interface IRegisterUserForm extends ILoginUserForm{
-	name: string;
-	surname: string;
-}
-
 export interface IUser {
-  name: string,
+	name: string,
 	surname: string,
 	email: string,
 	password: string,
 	id: number,
 	userData: string | undefined
-}
-
-export interface ICategory {
-	id: number;
-	userId: number;
-	title: string;
-	description: string;
 }
 
 export interface ICurrency {
@@ -60,11 +43,11 @@ export interface ISpendingRequest {
 }
 
 export interface ITableSpendings {
-  date: string;
-  description: string;
-  amount: {
-    amount: number;
-    currency: string;
-  };
-  category: string;
+	date: string;
+	description: string;
+	amount: {
+		amount: number;
+		currency: string;
+	};
+	category: string;
 }

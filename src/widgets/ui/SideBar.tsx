@@ -9,12 +9,12 @@ import { HiOutlineDocumentReport } from "react-icons/hi";
 import { IoMdList } from "react-icons/io";
 import { LuSun, LuMoon, LuSettings, LuWalletCards } from "react-icons/lu";
 import type { MenuProps } from 'antd';
-import LogoNav from '../../shared/ui/LogoNav';
+import { LogoNav } from 'src/entities/logo';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { PathRoutes } from 'src/data/constants';
 import { changeShowModal } from 'src/app';
-import AddSpendingModal from '../../pages/AddSpendingModal';
+import { AddSpendingModal } from 'src/features/add-spending-modal';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -38,8 +38,8 @@ const items: MenuProps['items'] = [
   getItem('Dashboard', PathRoutes.Home, <MdOutlineSpaceDashboard />),
   getItem('History', PathRoutes.History, <IoMdList />),
   getItem('Categories', PathRoutes.Categories, <BiCategoryAlt />),
-  getItem('Accounts', PathRoutes.Accounts, <LuWalletCards />),
-  getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
+  // getItem('Accounts', PathRoutes.Accounts, <LuWalletCards />),
+  // getItem('Reports', PathRoutes.Reports, <HiOutlineDocumentReport />),
   getItem('Settings', PathRoutes.Settings, <LuSettings />),
   getItem('Logout', PathRoutes.Logout, <MdLogout />),
 ]

@@ -27,6 +27,7 @@ export const getThemeData = (isDarkMode: boolean = false) => ({
       iconSize: 16,
       darkItemSelectedBg: 'transparent',
       itemSelectedBg: 'transparent',
+      darkItemHoverBg: '#202020',
       itemHeight: 32
     },
     Layout: {

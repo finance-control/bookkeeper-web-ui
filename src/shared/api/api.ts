@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { BASE_URL, TAG_TYPES, USER_DATA_COOKIE } from 'src/data/constants'
+import { TAG_TYPES } from './tags'
+import { USER_DATA_COOKIE, BASE_URL } from 'src/shared/models'
 import Cookies from "js-cookie"
 
 export const api = createApi({
@@ -13,18 +14,6 @@ export const api = createApi({
 			return headers
 		},
 	}),
-	tagTypes: [TAG_TYPES.CATEGORIES, TAG_TYPES.CURRENCIES, TAG_TYPES.SPENDINGS],
+	tagTypes: [TAG_TYPES.CURRENCIES, TAG_TYPES.SPENDINGS],
 	endpoints: () => ({}),
 })
-
-export const apiBaseQuery = () => {
-	return fetchBaseQuery({
-		baseUrl: BASE_URL,
-		prepareHeaders: (headers) => {
-			if (Cookies.get(USER_DATA_COOKIE)) {
-				headers.set('authorization', `Basic ${Cookies.get(USER_DATA_COOKIE)}`)
-			}
-			return headers
-		},
-	})
-}

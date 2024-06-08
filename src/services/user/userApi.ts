@@ -1,5 +1,7 @@
 import { api } from 'src/shared/api'
-import { CURRENT_USER_URL, Methods } from 'src/data/constants'
+import { CURRENT_USER_URL } from 'src/shared/models'
+import { Methods } from 'src/shared/models'
+
 
 export const userApi = api.injectEndpoints({
 	endpoints: (builder) => ({

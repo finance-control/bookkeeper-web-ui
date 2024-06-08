@@ -13,12 +13,10 @@ interface IUserAvatarProps {
   className?: string;
 }
 
-const UserAvatar: React.FunctionComponent<IUserAvatarProps> = ({ size = 24, className }) => {
+export const UserAvatar: React.FunctionComponent<IUserAvatarProps> = ({ size = 24, className }) => {
   return (
     <>
       <Avatar size={size} icon={<AiOutlineUser />} css={avatarStyle} className={className} />
     </>
   )
 }
-
-export default UserAvatar;

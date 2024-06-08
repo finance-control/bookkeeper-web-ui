@@ -2,10 +2,10 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { css } from '@emotion/react';
 import { Layout, Flex, Divider, Grid } from 'antd';
 import Cookies from 'js-cookie';
-import { Sider } from "src/widgets/sider/index"
-import Header from "src/widgets/ui/Header"
-import Footer from 'src/widgets/ui/Footer';
-import { useContainerWidth } from 'src/shared/hooks';
+import { Sider } from "src/widgets/sider"
+import { Header } from "src/widgets/header"
+import { Footer } from 'src/widgets/footer';
+import { useContainerWidth } from 'src/shared/lib';
 
 const { useBreakpoint } = Grid
 

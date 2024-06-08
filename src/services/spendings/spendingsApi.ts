@@ -1,6 +1,8 @@
 import { ISpendingRequest, ISpendingResponse } from 'src/models/models'
 import { api } from 'src/shared/api'
-import { TAG_TYPES, SPENDINGS_URL, Methods } from 'src/data/constants'
+import { SPENDINGS_URL } from 'src/shared/models'
+import { TAG_TYPES } from 'src/shared/api'
+import { Methods } from 'src/shared/models'
 
 interface IParam {
 	start_date: string;

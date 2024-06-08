@@ -1,6 +1,8 @@
 import { ICurrency } from 'src/models/models'
 import { api } from 'src/shared/api'
-import { TAG_TYPES, CURRENCIES_URL, Methods } from 'src/data/constants'
+import { CURRENCIES_URL } from 'src/shared/models'
+import { TAG_TYPES } from 'src/shared/api'
+import { Methods } from 'src/shared/models'
 
 export const currenciesApi = api.injectEndpoints({
 	endpoints: (builder) => ({

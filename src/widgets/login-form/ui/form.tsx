@@ -1,7 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react'
 import { useNavigate } from "react-router-dom";
-import { useLazyLoginUserQuery } from '../api/authApi';
+import { useLazyLoginUserQuery } from 'src/shared/api';
 import {
   Button,
   Flex,
@@ -13,8 +13,8 @@ import {
   Card,
   Alert
 } from 'antd';
-import LogoNav from 'src/shared/ui/LogoNav';
-import { ILoginUserForm } from 'src/models/models';
+import { LogoNav } from 'src/entities/logo';
+import { ILoginUserForm } from '../model/types';
 
 const { Title, Text, Link } = Typography
 const { useToken } = theme;
