@@ -21,7 +21,7 @@ const drawerStyle = css`
 interface IDrawerProps {
 }
 
-export const Drawer: React.FC<IDrawerProps> = (props) => {
+export const Drawer: React.FC<IDrawerProps> = () => {
   const { isDrawerOpened } = useAppSelector(state => state.rootSliceReducer)
   const dispatch = useAppDispatch()
 
@@ -35,7 +35,7 @@ export const Drawer: React.FC<IDrawerProps> = (props) => {
         closeIcon={<IoClose />}
         css={drawerStyle}
       >
-        <SideBar isCollapsed={false} />
+        <SideBar />
       </AntDrawer>
     </>
   )

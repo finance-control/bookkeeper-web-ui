@@ -9,8 +9,8 @@ const { Title } = Typography
 interface IGreetingWidgetProps {
 }
 
-const GreetingWidget: React.FunctionComponent<IGreetingWidgetProps> = (props) => {
-  const { data, isLoading, isError } = useGetUserQuery({})
+const GreetingWidget: React.FunctionComponent<IGreetingWidgetProps> = () => {
+  const { data, isLoading } = useGetUserQuery({})
   const [timePeriod, setTimePeriod] = useState('')
 
   useEffect(() => {

@@ -35,9 +35,9 @@ const formStyle = css`
 interface IFormProps {
 }
 
-export const Form: React.FunctionComponent<IFormProps> = (props) => {
+export const Form: React.FunctionComponent<IFormProps> = () => {
   const navigate = useNavigate();
-  const [loginUser, { data, isLoading, isError }] = useLazyLoginUserQuery()
+  const [loginUser, { isLoading, isError }] = useLazyLoginUserQuery()
   const { token } = useToken();
   const handleOnRegister = () => {
     navigate("/register")

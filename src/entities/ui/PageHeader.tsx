@@ -17,7 +17,7 @@ interface IPageHeaderProps {
   className?: string;
 }
 
-const PageHeader: React.FunctionComponent<IPageHeaderProps> = ({ pageTitle, children, subtitle, className }) => {
+const PageHeader: React.FunctionComponent<IPageHeaderProps> = ({ pageTitle, children, subtitle }) => {
   return (
     <Flex css={pageHeaderStyle} align='center'>
       <ButtonBack css={css`

@@ -15,7 +15,7 @@ const { Title } = Typography
 interface ICategoriesPageProps {
 }
 
-export const CategoriesPage: React.FC<ICategoriesPageProps> = (props) => {
+export const CategoriesPage: React.FC<ICategoriesPageProps> = () => {
 	const { data, isLoading, isError } = useGetCategoriesQuery(null, { refetchOnFocus: true })
 	return (
 		<>

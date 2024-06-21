@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
-import { Typography, Flex, theme, Card, Tag, Space } from 'antd';
+import { Typography, Flex, theme, Card, Tag } from 'antd';
 
 const { Title, Text } = Typography
 const { useToken } = theme;
@@ -20,7 +20,7 @@ const incrementStyle = css`
 interface IBalanceBlockItemProps {
 }
 
-const BalanceBlockItem: React.FC<IBalanceBlockItemProps> = (props) => {
+const BalanceBlockItem: React.FC<IBalanceBlockItemProps> = () => {
   const { token } = useToken();
   return (
     <>

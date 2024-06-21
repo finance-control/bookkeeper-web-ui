@@ -9,7 +9,7 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept"
 interface IDateWidgetProps {
 }
 
-const DateWidget: React.FC<IDateWidgetProps> = (props) => {
+const DateWidget: React.FC<IDateWidgetProps> = () => {
 
   const [date, setDate] = useState({
     dayMonth: '',

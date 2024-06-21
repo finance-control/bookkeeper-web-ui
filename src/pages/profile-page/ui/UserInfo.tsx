@@ -18,8 +18,8 @@ const surnameStyle = css`
 interface IUserInfoProps {
 }
 
-export const UserInfo: React.FC<IUserInfoProps> = (props) => {
-  const { data, isLoading, isError } = useGetUserQuery({})
+export const UserInfo: React.FC<IUserInfoProps> = () => {
+  const { data } = useGetUserQuery({})
   return (
     <>
       <UserAvatar size={128} css={css`margin-right: 16px;`} />

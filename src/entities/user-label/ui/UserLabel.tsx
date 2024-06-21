@@ -39,7 +39,7 @@ const emailStyle = css`
 interface IUserLabelProps {
 }
 
-export const UserLabel: React.FunctionComponent<IUserLabelProps> = (props) => {
+export const UserLabel: React.FunctionComponent<IUserLabelProps> = () => {
 	const { data, isLoading, isError } = useGetUserQuery({})
 	const navigate = useNavigate();
 	const handleOnClick = () => {

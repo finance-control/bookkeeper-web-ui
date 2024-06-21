@@ -5,7 +5,7 @@ import PageWrapper from 'src/entities/ui/PageWrapper';
 interface IReportsPageProps {
 }
 
-const ReportsPage: React.FC<IReportsPageProps> = (props) => {
+const ReportsPage: React.FC<IReportsPageProps> = () => {
   return (
     <>
       <PageWrapper>

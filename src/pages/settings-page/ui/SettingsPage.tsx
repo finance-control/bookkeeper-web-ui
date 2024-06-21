@@ -5,7 +5,7 @@ import { BlockContent } from 'src/shared/ui'
 interface ISettingsPageProps {
 }
 
-export const SettingsPage: React.FC<ISettingsPageProps> = (props) => {
+export const SettingsPage: React.FC<ISettingsPageProps> = () => {
   return (
     <>
       <PageWrapper>

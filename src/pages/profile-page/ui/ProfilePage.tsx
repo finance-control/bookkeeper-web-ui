@@ -6,7 +6,7 @@ import { UserInfo } from './UserInfo'
 export interface IProfilePageProps {
 }
 
-export const ProfilePage = (props: IProfilePageProps) => {
+export const ProfilePage = () => {
 	return (
 		<div>
 			<PageWrapper>

@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { css } from '@emotion/react';
+import { useEffect } from 'react';
 import { useLazyGetSpendingsQuery } from 'src/services/spendings/spendingsApi';
 import { Tag, Table, Alert } from 'antd';
 import type { TableProps } from 'antd';

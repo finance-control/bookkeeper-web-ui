@@ -70,14 +70,13 @@ const selectPeriodOptions: { value: string, label: string }[] = [
 interface IHistoryPageProps {
 }
 
-export const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
+export const HistoryPage: React.FC<IHistoryPageProps> = () => {
   const [selectedDates, setSelectedDates] = useState<string[]>([''])
 
-  const onChange = (key: string) => {
-    // console.log(key);
-  };
-
-  const handleOnSelectedDatesChange = (date: any, dates: string[]) => setSelectedDates(dates)
+  const handleOnSelectedDatesChange = (date: any, dates: string[]) => {
+    console.log(date)
+    setSelectedDates(dates)
+  }
 
   const handleOnSelectedPeriodChange = (value: string) => {
     switch (value) {
@@ -138,7 +137,7 @@ export const HistoryPage: React.FC<IHistoryPageProps> = (props) => {
               />
             </Space>
           </Flex>
-          <Tabs defaultActiveKey="1" items={getItems(selectedDates)} onChange={onChange} />
+          <Tabs defaultActiveKey="1" items={getItems(selectedDates)} />
         </BlockContent>
       </PageWrapper>
     </>

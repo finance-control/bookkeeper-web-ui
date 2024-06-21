@@ -26,18 +26,15 @@ const filterOption = (input: string, option?: { label: string; value: string }) 
 interface IAddSpendingModalProps {
 }
 
-export const AddSpendingModal: React.FC<IAddSpendingModalProps> = (props) => {
-  const { data, isLoading, isError } = useGetCategoriesQuery(null, { refetchOnFocus: true })
+export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
+  const { data, isLoading } = useGetCategoriesQuery(null, { refetchOnFocus: true })
 
   const {
-    data: currenciesData,
-    isLoading: currenciesLoading,
-    isError: currenciesError
+    data: currenciesData
   } = useGetCurrenciesQuery(null, { refetchOnFocus: true })
 
   const [addSpending,
     { data: spendingData,
-      isLoading: isSpendingLoading,
       isError: isSpendingError,
       isSuccess: isSpendingSuccess,
       reset: spendingReset }

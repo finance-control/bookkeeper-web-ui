@@ -31,7 +31,7 @@ export const Sider: React.FC<ISiderProps> = ({ className }) => {
 				onCollapse={value => setCollapsed(value)}
 				width={170}
 			>
-				<SideBar isCollapsed={collapsed} />
+				<SideBar />
 			</AntSider>
 		</Flex>
 	)

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 interface IPageNotFoundProps {
 }
 
-export const NotFoundPage: React.FunctionComponent<IPageNotFoundProps> = (props) => {
+export const NotFoundPage: React.FunctionComponent<IPageNotFoundProps> = () => {
 	const navigate = useNavigate();
 	return (
 		<>

@@ -14,7 +14,7 @@ const mainWrapperStyle = css`
 interface IRegisterProps {
 }
 
-export const RegisterPage: React.FunctionComponent<IRegisterProps> = (props) => {
+export const RegisterPage: React.FunctionComponent<IRegisterProps> = () => {
 	return (
 		<>
 			<Layout css={mainWrapperStyle}>

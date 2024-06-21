@@ -24,7 +24,7 @@ interface IHeaderProps {
   className?: string;
 }
 
-export const Header: React.FunctionComponent<IHeaderProps> = ({ className }) => {
+export const Header: React.FunctionComponent<IHeaderProps> = () => {
   const { xs: isXsBreakpoint } = useBreakpoint();
   const dispatch = useAppDispatch()
   const containerWidth = useContainerWidth()

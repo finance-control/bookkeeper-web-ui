@@ -7,7 +7,7 @@ import { useAddCategoryMutation } from '../api/addCategory'
 interface IAddCategoryModalProps {
 }
 
-export const AddCategoryModal: React.FC<IAddCategoryModalProps> = (props) => {
+export const AddCategoryModal: React.FC<IAddCategoryModalProps> = () => {
   const [addCategory, { data, isSuccess, isLoading, isError, reset }] = useAddCategoryMutation()
   const dispatch = useAppDispatch()
   const { isModalOpen, modalType } = useAppSelector(state => state.rootSliceReducer.modal)

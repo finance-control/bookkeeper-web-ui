@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
-import { Typography, Space, Flex, Select } from 'antd';
+import { Typography, Space } from 'antd';
 import BalanceBlockCard from 'src/widgets/ui/BalanceBlockCard';
 
 const { Title } = Typography
@@ -22,7 +22,7 @@ const widgetsWrapperStyle = css`
 interface IBalanceBlockProps {
 }
 
-const BalanceBlock: React.FC<IBalanceBlockProps> = (props) => {
+const BalanceBlock: React.FC<IBalanceBlockProps> = () => {
   return (
     <>
       <Title level={4} style={{ marginBottom: 0 }}>Balance</Title>

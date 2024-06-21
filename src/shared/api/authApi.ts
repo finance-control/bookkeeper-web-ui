@@ -22,7 +22,7 @@ export const authApi = createApi({
 					Authorization: `Basic ${userData}`,
 				},
 			}),
-			async onQueryStarted(userData, { dispatch, queryFulfilled }) {
+			async onQueryStarted(userData, { queryFulfilled }) {
 				try {
 					const { data } = await queryFulfilled
 					if (Cookies.get(USER_DATA_COOKIE)) {

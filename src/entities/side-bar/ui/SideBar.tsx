@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/app';
-import { Divider, Menu, Modal, Flex, Switch } from 'antd'
+import { Menu, Modal } from 'antd'
 import { css } from '@emotion/react'
 import { BiCategoryAlt } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
-import { MdOutlineSpaceDashboard, MdOutlineAddCircleOutline } from "react-icons/md";
-import { HiOutlineDocumentReport } from "react-icons/hi";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import { IoMdList } from "react-icons/io";
-import { LuSettings, LuWalletCards } from "react-icons/lu";
+import { LuSettings } from "react-icons/lu";
 import type { MenuProps } from 'antd';
-import { LogoNav } from 'src/entities/logo';
+// import { LogoNav } from 'src/entities/logo';
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { PathRoutes } from 'src/data/constants';
@@ -64,11 +63,7 @@ const menuBarStyle = css`
   }
 `
 
-interface ISideBarProps {
-  isCollapsed: boolean;
-}
-
-export const SideBar: React.FC<ISideBarProps> = ({ isCollapsed }) => {
+export const SideBar: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch()
   const [openModal, setOpenModal] = useState(false);
@@ -104,7 +99,7 @@ export const SideBar: React.FC<ISideBarProps> = ({ isCollapsed }) => {
     setOpenModal(true);
   };
 
-  const handleOk = (e: React.MouseEvent<HTMLElement>) => {
+  const handleOk = () => {
     Cookies.remove('userData')
     navigate("/login")
     setOpenModal(false);

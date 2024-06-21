@@ -35,10 +35,10 @@ const formStyle = css`
 interface IFormProps {
 }
 
-export const RegisterForm: React.FC<IFormProps> = (props) => {
+export const RegisterForm: React.FC<IFormProps> = () => {
 	const navigate = useNavigate();
-	const [registerUser, { data: registerData, isLoading: isRegisterLoading, isError: isRegisterError }] = useRegisterUserMutation()
-	const [loginUser, { data: loginData, isLoading: isLoginLoading, isError: isLoginError }] = useLazyLoginUserQuery()
+	const [registerUser, { isLoading: isRegisterLoading, isError: isRegisterError }] = useRegisterUserMutation()
+	const [loginUser, { isLoading: isLoginLoading, isError: isLoginError }] = useLazyLoginUserQuery()
 	const { token } = useToken();
 
 	const handleOnLogin = () => {

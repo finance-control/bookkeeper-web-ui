@@ -1,4 +1,4 @@
-export const BASE_URL: string = 'http://localhost:8080'
+export const BASE_URL: string = 'http://147.45.233.170:8080'
 
 export const SIGN_IN_URL: string = '/api/v1/users/signing'
 export const SIGN_UP_URL: string = '/api/v1/users/registration'
