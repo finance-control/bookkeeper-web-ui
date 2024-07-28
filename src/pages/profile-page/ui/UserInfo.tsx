@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Typography, Space } from 'antd';
 import { css } from '@emotion/react';
 import { UserAvatar } from 'src/shared/ui';
@@ -6,10 +5,7 @@ import { useGetUserQuery } from 'src/shared/api';
 
 const { Title } = Typography
 
-interface IUserInfoProps {
-}
-
-export const UserInfo: React.FC<IUserInfoProps> = () => {
+export const UserInfo: React.FC = () => {
   const { data } = useGetUserQuery(null)
   return (
     <>
