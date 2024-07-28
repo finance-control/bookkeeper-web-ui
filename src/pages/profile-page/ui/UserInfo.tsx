@@ -1,34 +1,32 @@
 import * as React from 'react';
-import { Typography } from 'antd';
+import { Typography, Space } from 'antd';
 import { css } from '@emotion/react';
 import { UserAvatar } from 'src/shared/ui';
-import { useGetUserQuery } from 'src/services/user/userApi';
+import { useGetUserQuery } from 'src/shared/api';
 
 const { Title } = Typography
-
-const nameStyle = css`
-	margin-bottom: 4px !important;
-`
-
-const surnameStyle = css`
-	margin-top: 0 !important;
-	margin-bottom: 0 !important;
-`
 
 interface IUserInfoProps {
 }
 
 export const UserInfo: React.FC<IUserInfoProps> = () => {
-  const { data } = useGetUserQuery({})
+  const { data } = useGetUserQuery(null)
   return (
     <>
-      <UserAvatar size={128} css={css`margin-right: 16px;`} />
+      <UserAvatar size={128} css={css`
+        margin-right: 16px;
+      `} />
       <div>
-        <Title level={3} css={nameStyle}>
-          {data?.name}
-        </Title>
-        <Title level={5} css={surnameStyle}>
-          {data?.surname}
+        <Space wrap>
+          <Title level={3} >
+            {data?.name}
+          </Title>
+          <Title level={3}>
+            {data?.surname}
+          </Title>
+        </Space>
+        <Title level={5}>
+          {data?.email}
         </Title>
       </div>
     </>

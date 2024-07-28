@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useGetUserQuery } from 'src/services/user/userApi'
+import { useGetUserQuery } from 'src/shared/api'
 import { css } from '@emotion/react'
 import { useNavigate } from "react-router-dom";
 import { Flex, Button, Typography } from 'antd';
@@ -40,7 +40,7 @@ interface IUserLabelProps {
 }
 
 export const UserLabel: React.FunctionComponent<IUserLabelProps> = () => {
-	const { data, isLoading, isError } = useGetUserQuery({})
+	const { data, isLoading, isError } = useGetUserQuery(null)
 	const navigate = useNavigate();
 	const handleOnClick = () => {
 		navigate("/profile")
@@ -61,7 +61,7 @@ export const UserLabel: React.FunctionComponent<IUserLabelProps> = () => {
 								<Title ellipsis css={nameStyle}>{data.name}</Title>
 								<Title ellipsis css={surnameStyle}>{data.surname}</Title>
 							</Flex>
-							<Text ellipsis css={emailStyle}>test_name_11111surname@yandex.ru</Text>
+							<Text ellipsis css={emailStyle}>{data.email}</Text>
 						</Flex>
 					</Flex>}
 				{isError && <p>No User Data</p>}
