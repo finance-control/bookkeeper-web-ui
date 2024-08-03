@@ -36,10 +36,7 @@ const emailStyle = css`
 	font-size: 12px;
 `
 
-interface IUserLabelProps {
-}
-
-export const UserLabel: React.FunctionComponent<IUserLabelProps> = () => {
+export const UserLabel: React.FC = () => {
 	const { data, isLoading, isError } = useGetUserQuery(null)
 	const navigate = useNavigate();
 	const handleOnClick = () => {

@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie"
 import { PathRoutes } from 'src/data/constants';
 import { changeShowModal, changeShowDrawer } from 'src/app';
-import { AddSpendingModal } from 'src/features/add-spending-modal';
+import { AddSpendingModal } from 'src/pages/add-spending-modal';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

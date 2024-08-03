@@ -7,4 +7,5 @@ export {
   useRegisterUserMutation,
 } from './authApi'
 export { userApi, useGetUserQuery } from './userApi'
+export { currenciesApi, useGetCurrenciesQuery } from './currenciesApi'
 export { TAG_TYPES } from './tags'

@@ -4,3 +4,8 @@ export interface ICategory {
   title: string;
   description: string;
 }
+
+export interface ICurrency {
+  code: string;
+  title: string;
+}

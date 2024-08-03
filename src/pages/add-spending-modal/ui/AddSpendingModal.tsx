@@ -2,93 +2,56 @@ import {
   Modal,
   Form,
   Input,
-  Alert,
-  Button,
   Select,
   InputNumber,
-  DatePicker
+  DatePicker,
+  message
 } from 'antd';
-import { css } from '@emotion/react';
 import { useAppSelector, useAppDispatch, changeShowModal } from 'src/app';
-import { useGetCategoriesQuery } from 'src/shared/api/categoriesApi';
-import { useGetCurrenciesQuery } from 'src/services/currencies/currenciesApi';
+import { useGetCategoriesQuery, useGetCurrenciesQuery } from 'src/shared/api';
 import dayjs from 'dayjs';
 import { useAddSpendingMutation } from 'src/services/spendings/spendingsApi';
+import { getDigitsCount } from '../lib/getDigitsCount';
+import { getCategoriesData } from '../lib/getCategoriesData';
+import { getCurrencies } from '../lib/getCurrencies';
+import { getFilterOption } from '../lib/getFilterOption';
+import { useEffect } from 'react';
 
 const dateRequestFormat = 'YYYY-MM-DD'
 const dateViewFormat = 'DD.MM.YYYY'
 
 const { TextArea } = Input
 
-const filterOption = (input: string, option?: { label: string; value: string }) =>
-  (option?.label ?? '').toLowerCase().includes(input.toLowerCase());
+export const AddSpendingModal: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const { isModalOpen, modalType } = useAppSelector(state => state.rootSliceReducer.modal)
+  const [form] = Form.useForm();
+  const [messageApi, contextHolder] = message.useMessage();
 
-interface IAddSpendingModalProps {
-}
-
-export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
   const { data, isLoading } = useGetCategoriesQuery(null, { refetchOnFocus: true })
-
-  const {
-    data: currenciesData
-  } = useGetCurrenciesQuery(null, { refetchOnFocus: true })
-
+  const { data: currenciesData } = useGetCurrenciesQuery(null, { refetchOnFocus: true })
   const [addSpending,
     { data: spendingData,
       isError: isSpendingError,
       isSuccess: isSpendingSuccess,
       reset: spendingReset }
   ] = useAddSpendingMutation()
-  const dispatch = useAppDispatch()
-  const { isModalOpen, modalType } = useAppSelector(state => state.rootSliceReducer.modal)
-  const [form] = Form.useForm();
-
-  const getDigitsCount = (number: number): number => {
-    const numberString = number.toString()
-    if (numberString.includes('.')) {
-      const parts = numberString.split('.')
-      if (Array.isArray(parts) && parts.length > 1) {
-        return parts.pop()!.length
-      }
-    }
-    return 0;
-  }
-
-  const getCategoriesData = () => {
-    if (data && data.length > 0) {
-      const categories = data.map((item: any) => (
-        {
-          value: '' + item.id,
-          label: item.title
-        }
-      ))
-      return [...categories]
-    }
-    return [{ value: '', label: '' }]
-  }
-
-  const getCurrencies = () => {
-    let currencies = [{ value: '', label: '' }]
-    if (currenciesData && currenciesData.length > 0) {
-      currencies = currenciesData.map((item: any) => (
-        {
-          value: '' + item.code,
-          label: item.code
-        }
-      ))
-    }
-
-    return (
-      <Form.Item name="currencyCode" css={css`margin-bottom: 0;`}>
-        <Select
-          style={{ width: 80 }}
-          options={[...currencies]}
-        />
-      </Form.Item>
-    )
-  }
 
   const getDate = () => new Date().toISOString().split('T')[0]
+
+  useEffect(() => {
+    messageApi.open({
+      type: 'success',
+      content: 'Catergory has been added',
+    });
+  }, [isSpendingSuccess])
+
+  useEffect(() => {
+    messageApi.open({
+      type: 'error',
+      content: 'Something went wrong, please try again.',
+    });
+  }, [isSpendingError])
 
   const handleOk = () => {
     addSpending({
@@ -101,20 +64,28 @@ export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
         accountId: null,
       },
       date: form.getFieldsValue().date.format(dateRequestFormat),
-      description: form.getFieldsValue().description,
+      description: form.getFieldsValue().description ?? '',
       categoryId: form.getFieldsValue().categoryId
     })
+
     form.resetFields()
     spendingReset()
+    dispatch(changeShowModal({
+      isModalOpen: false,
+      modalType: ''
+    }))
   }
 
-  const handleCancel = () => dispatch(changeShowModal({
-    isModalOpen: false,
-    modalType: ''
-  }))
+  const handleCancel = () => {
+    dispatch(changeShowModal({
+      isModalOpen: false,
+      modalType: ''
+    }))
+  }
 
   return (
     <>
+      {contextHolder}
       <Modal
         title="Add spending"
         open={isModalOpen && modalType === 'add_spending'}
@@ -123,8 +94,8 @@ export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
         okText='Add spending'
         confirmLoading={isLoading}
       >
-        {!spendingData && (!isSpendingSuccess || !isSpendingError) &&
-          <Form
+        {!spendingData &&
+          < Form
             form={form}
             name="form_add_spending"
             layout="vertical"
@@ -141,7 +112,7 @@ export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
             >
               <InputNumber
                 type="number"
-                addonAfter={getCurrencies()}
+                addonAfter={getCurrencies(currenciesData)}
                 size="large"
                 min={0.1}
                 style={{ width: '100%' }}
@@ -170,14 +141,15 @@ export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
                 showSearch
                 placeholder="Select category"
                 optionFilterProp="children"
-                filterOption={filterOption}
-                options={getCategoriesData()}
+                filterOption={getFilterOption}
+                options={getCategoriesData(data)}
                 style={{ width: '100%' }}
                 title='categoryId'
               />
             </Form.Item>
 
             <Form.Item
+              required={false}
               label="Description"
               name="description"
               rules={[{ required: true, message: 'Please type spending description' }]}
@@ -190,28 +162,7 @@ export const AddSpendingModal: React.FC<IAddSpendingModalProps> = () => {
               />
             </Form.Item>
           </Form>}
-        {
-          isSpendingSuccess &&
-          <Alert
-            message="Catergory has been added"
-            type="success"
-            showIcon
-            action={
-              <Button type='text'>
-                Add one more
-              </Button>
-            }
-          />
-        }
-        {
-          isSpendingError &&
-          <Alert
-            message="Something went wrong, please try again."
-            type="error"
-            showIcon
-          />
-        }
-      </Modal>
+      </Modal >
     </>
   )
 };

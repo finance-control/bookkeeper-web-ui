@@ -9,4 +9,4 @@ export {
   CURRENT_USER_URL
 } from './urls'
 export { COOKIES_EXPIRED_TIME, USER_DATA_COOKIE } from './cookies'
-export type { ICategory } from './types'
+export type { ICategory, ICurrency } from './types'

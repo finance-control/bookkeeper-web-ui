@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Space } from 'antd';
 import { AddSpending } from 'src/features/add-spending';
-import { AddSpendingModal } from 'src/features/add-spending-modal';
+import { AddSpendingModal } from 'src/pages/add-spending-modal';
 
 interface IOperationCardsBlockProps {
   className?: string;

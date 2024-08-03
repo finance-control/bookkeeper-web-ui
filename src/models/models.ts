@@ -7,11 +7,6 @@ export interface IUser {
 	userData: string | undefined
 }
 
-export interface ICurrency {
-	code: string;
-	title: string;
-}
-
 export interface ISpendingResponse {
 	id: number;
 	userId: number;

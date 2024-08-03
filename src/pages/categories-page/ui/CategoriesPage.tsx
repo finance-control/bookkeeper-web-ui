@@ -4,7 +4,7 @@ import { Space, Skeleton, Button, Typography, Empty, Alert, Flex } from 'antd'
 import { useGetCategoriesQuery } from 'src/shared/api'
 import { ICategory } from 'src/shared/models';
 import { lazy, Suspense } from 'react';
-import { AddCategoryModal } from 'src/features/add-category-modal'
+import { AddCategoryModal } from 'src/pages/add-category-modal'
 import { BlockContent } from 'src/shared/ui'
 import { AddCategory } from "src/features/add-category"
 
